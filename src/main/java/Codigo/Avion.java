@@ -1,5 +1,7 @@
 package Codigo;
 
+import java.util.Random;
+
 public class Avion extends Thread{
     private String id;
     private int capacidadMaxima;
@@ -39,8 +41,8 @@ public class Avion extends Thread{
         
     }
     
-    public String getId() {
-        return identificador;
+    public String getID() {
+        return id;
     }
     
     public int getCapacidadMaxima() {

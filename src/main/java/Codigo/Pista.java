@@ -17,6 +17,7 @@ public class Pista extends ZonaAeropuerto{
     public Pista(){
         super(1);
         avion =  new CopyOnWriteArrayList<>();
+        estado=true;
     }
     
     // Devuelve true si ha sido posible aterrizar y false si esta la pista cerrada (no ha sido posible)
@@ -51,5 +52,13 @@ public class Pista extends ZonaAeropuerto{
                 control.unlock();
                 return true;}}
         else {return false;}
+    }
+    
+    public boolean getEstado(){
+        return estado;
+    }
+    
+    public void setEstado(boolean estado){
+        this.estado=estado;
     }
 }

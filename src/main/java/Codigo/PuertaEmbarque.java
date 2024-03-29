@@ -14,9 +14,10 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     private Condition lleno = control.newCondition();
     private Condition vacio = control.newCondition();
     
-    public PuertaEmbarque(){
+    public PuertaEmbarque(char funcion){
         super(1);
         avion =  new CopyOnWriteArrayList<>();
+        this.funcion=funcion;
     }
     
     // Devuelve true si ha sido posible embarcar y false si esta puerta no es de embarque
