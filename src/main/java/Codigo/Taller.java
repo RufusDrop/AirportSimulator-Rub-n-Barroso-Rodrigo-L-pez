@@ -2,6 +2,7 @@ package Codigo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;
 
 public class Taller extends ZonaAeropuerto {
@@ -12,7 +13,7 @@ public class Taller extends ZonaAeropuerto {
     
     public Taller(){
         super(20);
-        aviones = new ArrayList<>();
+        aviones =  new CopyOnWriteArrayList<>();
         lleno = new Semaphore(this.getCapacidadMaxima());
     }
     
