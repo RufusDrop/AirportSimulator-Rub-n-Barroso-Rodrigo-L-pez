@@ -21,7 +21,7 @@ public class Taller extends ZonaAeropuerto {
         return aviones.size();
     }
     
-    public void accederHangar(Avion a)throws InterruptedException{
+    public void accederTaller(Avion a)throws InterruptedException{
         lleno.acquire();
         control.acquire(); //Bloqueo: Comienza SC
         aviones.add(a);
@@ -29,7 +29,7 @@ public class Taller extends ZonaAeropuerto {
         vacio.release();   
     }
     
-    public void salirHangar(Avion a)throws InterruptedException{
+    public void salirTaller(Avion a)throws InterruptedException{
         vacio.acquire();
         control.acquire(); //Bloqueo: Comienza SC
         aviones.remove(a);

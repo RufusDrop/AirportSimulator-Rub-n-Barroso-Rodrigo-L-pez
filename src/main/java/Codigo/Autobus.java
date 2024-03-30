@@ -20,6 +20,14 @@ public class Autobus extends Thread{
         }
     }
     
+    public void agregarPasajeros(int pasajerosSubidos){
+        pasajeros=pasajerosSubidos;
+    }
+    
+    public void quitarPasajeros(int pasajerosSubidos){
+        pasajeros=0;
+    }
+    
     public String getID() {
         return id;
     }
