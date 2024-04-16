@@ -110,13 +110,48 @@ public class Aeropuerto {
     }
     
     //Espera en el area de estacionamiento hasta que haya una gate libre 
-    public void embarcar(Avion avion) {
+    //Cubrir el caso de que no haya el maximo para que la concurrencia no haga dar fallo
+    public void embarcar(Avion avion) throws InterruptedException {
         //Buscar una gate disponible ,gate1-gate5 incluidas
+        PuertaEmbarque p;
+        p=obtenerPuertaEmbarque();
+        areaEstacionamiento.salirAreaEstacionamiento(avion);//Si no sirve , sacarlo dentro de puerta de embarque 
+        p.embarcar(avion);
+        if (personas>=avion.getCapacidadMaxima()){
+            personas=personas-avion.getCapacidadMaxima();//Proteger!!!
+            avion.subir(avion.getCapacidadMaxima());
+            Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
+        }else {
+            int pasajeros=0;
+            pasajeros=personas;
+            personas=personas-pasajeros;//Proteger!!!
+            avion.subir(pasajeros);
+            Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
+            int cont=0;
+            while (!(avion.getCapacidadMaxima()==avion.getPasajeros()) && cont<2){
+                int restante=avion.getCapacidadMaxima()-avion.getPasajeros();
+                Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+                if(personas >= restante){ 
+                    personas=personas-restante;//Proteger!!!
+                    avion.subir(restante);
+                    Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
+                    cont=3;
+                }else{
+                    int pasajeros2=0;
+                    pasajeros2=personas;
+                    personas=personas-pasajeros2;//Proteger!!!
+                    avion.subir(pasajeros2);
+                    Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
+                    cont+=1;
+                }
+            }
+        }
+        p.desembarcar(avion);
         
     }
 
-    public void accederAreaRodaje(Avion avion) {
-        
+    public void accederAreaRodaje(Avion avion) throws InterruptedException {
+        areaRodaje.accederAreaRodaje(avion);
     }
 
     public void despegar(Avion avion) {
@@ -137,11 +172,42 @@ public class Aeropuerto {
     }
     
     public PuertaEmbarque obtenerPuertaEmbarque(){
-        Random random = new Random();
-        int gate = random.nextInt(5) + 1;
+        //Mirar si estan ocupadas y devolver una 
         
-        // Switch para elegir una puerta según el número aleatorio
-        switch (gate) {
+        switch (1) {
+            case 1:
+                if (!gate1.estaOcupado()) {
+                    return gate1;
+                }
+            case 2:
+                if (!gate2.estaOcupado()) {
+                    return gate2;
+                }
+            case 3:
+                if (!gate3.estaOcupado()) {
+                    return gate3;
+                }
+            case 4:
+                if (!gate4.estaOcupado()) {
+                    return gate4;
+                }
+            case 5:
+                if (!gate5.estaOcupado()) {
+                    return gate5;
+                }
+            default:
+                return obtenerPuertaAleatoria(); // Si todas las puertas están ocupadas, devolvemos null
+
+        }
+
+    }
+    
+    // Método para obtener una puerta de embarque aleatoria entre gate1 y gate5
+    private PuertaEmbarque obtenerPuertaAleatoria() {
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(5) + 1; // Genera un número aleatorio entre 1 y 5
+    
+        switch (randomNumber) {
             case 1:
                 return gate1;
             case 2:
@@ -153,8 +219,7 @@ public class Aeropuerto {
             case 5:
                 return gate5;
             default:
-                return gate1;
-                
-        } 
+                return null; // Devolver null en caso de error
+        }
     }
 }

@@ -7,14 +7,14 @@ import java.util.concurrent.Semaphore;
 
 public class Taller extends ZonaAeropuerto {
     private List<Thread> aviones;
-    private Semaphore vacio = new Semaphore(0);
+    private Semaphore vacio = new Semaphore(0,true);
     private Semaphore lleno;
     private Semaphore control =new Semaphore(1);
     
     public Taller(){
         super(20);
         aviones =  new CopyOnWriteArrayList<>();
-        lleno = new Semaphore(this.getCapacidadMaxima());
+        lleno = new Semaphore(this.getCapacidadMaxima(),true);
     }
     
     public int getCapacidadActual(){

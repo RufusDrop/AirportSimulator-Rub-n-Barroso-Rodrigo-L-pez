@@ -3,36 +3,38 @@ package Codigo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
+
 
 public class PuertaEmbarque extends ZonaAeropuerto{
+    private boolean ocupado;//Si se esta usando esta en true 
     private char funcion;// E embarque , D desembarque y M mixto
     private List<Thread> avion;
-    private Lock control = new ReentrantLock();
-    private Condition lleno = control.newCondition();
-    private Condition vacio = control.newCondition();
+    private Semaphore control;
+    private Semaphore lleno;
+    private Semaphore vacio;
     
     public PuertaEmbarque(char funcion){
         super(1);
         avion =  new CopyOnWriteArrayList<>();
         this.funcion=funcion;
+        control= new Semaphore(1);
+        lleno= new Semaphore(1,true);
+        vacio= new Semaphore(0,true);
     }
     
     // Devuelve true si ha sido posible embarcar y false si esta puerta no es de embarque
     public boolean embarcar(Avion a)throws InterruptedException{
-        if (this.funcion == 'E' || this.funcion == 'M') { 
-            control.lock();
-
-            while (this.getCapacidadMaxima()== avion.size()){
-                lleno.await();
-            }
-            try {    
+        if (this.funcion == 'E' || this.funcion == 'M' && !ocupado) { 
+            lleno.acquire();
+            try {
+                control.acquire();//Bloqueo para modificar
+                ocupado=true;
                 avion.add(a);
-                vacio.signal();}
+                }
             finally{ 
-                control.unlock();
+                control.release();//Desbloqueo tras modifiar
+                vacio.release();
                 return true;}}
         else {return false;}
     }
@@ -40,17 +42,21 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     // Devuelve true si ha sido posible desembarcar y false si esta puerta no es de desembarque
     public boolean desembarcar(Avion a)throws InterruptedException{
         if (this.funcion == 'D' || this.funcion == 'M'){   
-            control.lock();
-
-            while (avion.size()==0){
-                vacio.await();
-            }
-            try {    
+            vacio.acquire();
+            try {
+                control.acquire();//Bloqueo para modificar
                 avion.remove(a);
-                lleno.signal();}
+                ocupado=false;
+                }
             finally{ 
-                control.unlock();
+                control.release();//Desbloqueo tras modifiar
+                lleno.release();
                 return true;}}
         else {return false;}
+    }
+    
+    //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
+    public boolean estaOcupado() {
+        return ocupado;
     }
 }

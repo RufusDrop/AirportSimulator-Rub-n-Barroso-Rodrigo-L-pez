@@ -13,12 +13,13 @@ public class Avion extends Thread{
     private boolean ubicacion;//si es true el avión esta en el taller y si es false esta en el hangar(por defecto)
 
     
-    public Avion (String id,int pasajeros,Aeropuerto aeropuerto){
+    public Avion (String id,int capacidadMaxima,Aeropuerto aeropuerto){
         this.id=id;
-        this.pasajeros=pasajeros;
+        this.capacidadMaxima=capacidadMaxima;
         this.aeropuerto = aeropuerto;
         numVuelos=0;
         ubicacion=false;
+        pasajeros=0;
     }
     
     public void run() {
@@ -27,9 +28,7 @@ public class Avion extends Thread{
         while (true) {
             try {
                 aeropuerto.accederAreaEstacionamiento(this);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Avion.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
             aeropuerto.embarcar(this);
             aeropuerto.accederAreaRodaje(this);
             aeropuerto.despegar(this);
@@ -50,6 +49,9 @@ public class Avion extends Thread{
             }else{
                 //si no se queda en el taller
                 ubicacion=true;
+            }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Avion.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
         
@@ -76,4 +78,11 @@ public class Avion extends Thread{
         return ubicacion;
     }
     
+    public void subir(int pasajeros){
+        this.pasajeros=this.pasajeros+pasajeros;
+    }
+    
+    public void bajar(int pasajeros){
+        this.pasajeros=0;
+    }
 }
