@@ -222,6 +222,10 @@ public class Aeropuerto {
                 if (!gate5.estaOcupado()) {
                     return gate5;
                 }
+            case 6:
+                if (!gate6.estaOcupado()) {
+                    return gate6;
+                }
             default:
                 return null; // Si todas las puertas están ocupadas, devolvemos null
 
