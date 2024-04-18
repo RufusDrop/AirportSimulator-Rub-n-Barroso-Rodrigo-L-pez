@@ -8,15 +8,17 @@ public class Avion extends Thread{
     private String id;
     private int capacidadMaxima;
     private int pasajeros;
-    private Aeropuerto aeropuerto;
+    private Aeropuerto aeropuerto1;
+    private Aeropuerto aeropuerto2;
     private int numVuelos;
     private boolean ubicacion;//si es true el avión esta en el taller y si es false esta en el hangar(por defecto)
 
     
-    public Avion (String id,int capacidadMaxima,Aeropuerto aeropuerto){
+    public Avion (String id,int capacidadMaxima,Aeropuerto aeropuerto1,Aeropuerto aeropuerto2){
         this.id=id;
         this.capacidadMaxima=capacidadMaxima;
-        this.aeropuerto = aeropuerto;
+        this.aeropuerto1 = aeropuerto1;
+        this.aeropuerto2 = aeropuerto2;
         numVuelos=0;
         ubicacion=false;
         pasajeros=0;
@@ -24,28 +26,27 @@ public class Avion extends Thread{
     
     public void run() {
         //si es false actua como spawn
-        aeropuerto.accesoHangar(this,false);
+        aeropuerto1.accesoHangar(this,false);
         while (true) {
             try {
-                aeropuerto.accederAreaEstacionamiento(this);
+                aeropuerto1.accederAreaEstacionamiento(this);
             
-            aeropuerto.embarcar(this);
-            aeropuerto.accederAreaRodaje(this);
-            aeropuerto.despegar(this);
-            aeropuerto.aterrizar(this);
-            aeropuerto.desembarcar(this);
+            aeropuerto1.embarcar(this);
+            aeropuerto1.despegar(this);
+            aeropuerto2.aterrizar(this);
+            aeropuerto2.desembarcar(this);
             numVuelos++;
             if (numVuelos%15==0){
                 // si es true es inspeccion larga y si es false es revision
-                aeropuerto.inspeccion(this,true);
+                aeropuerto2.inspeccion(this,true);
             }else{
                 // si es true es inspeccion larga y si es false es revision
-                aeropuerto.inspeccion(this,false);
+                aeropuerto2.inspeccion(this,false);
             }
             Random random = new Random();
             if (random.nextDouble() < 0.5) {
                 //si es true duerme 
-                aeropuerto.accesoHangar(this,true);
+                aeropuerto2.accesoHangar(this,true);
             }else{
                 //si no se queda en el taller
                 ubicacion=true;

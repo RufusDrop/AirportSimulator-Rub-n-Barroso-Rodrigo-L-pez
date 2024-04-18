@@ -21,6 +21,7 @@ public class PuertaEmbarque extends ZonaAeropuerto{
         control= new Semaphore(1);
         lleno= new Semaphore(1,true);
         vacio= new Semaphore(0,true);
+        ocupado=false;
     }
     
     // Devuelve true si ha sido posible embarcar y false si esta puerta no es de embarque

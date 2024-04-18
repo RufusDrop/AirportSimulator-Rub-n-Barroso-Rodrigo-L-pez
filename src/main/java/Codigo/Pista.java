@@ -8,6 +8,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Pista extends ZonaAeropuerto{
+    private boolean ocupado;//Si se esta usando esta en true
     private boolean estado;// true para abierto y false para cerrado
     private List<Thread> avion;
     private Lock control = new ReentrantLock();
@@ -18,17 +19,19 @@ public class Pista extends ZonaAeropuerto{
         super(1);
         avion =  new CopyOnWriteArrayList<>();
         estado=true;
+        ocupado=false;
     }
     
     // Devuelve true si ha sido posible aterrizar y false si esta la pista cerrada (no ha sido posible)
-    public boolean aterrizar (Avion a)throws InterruptedException{
-        if (this.estado ) { 
+    public boolean accederPista (Avion a)throws InterruptedException{
+        if (this.estado && !ocupado) { 
             control.lock();
 
             while (this.getCapacidadMaxima()== avion.size()){
                 lleno.await();
             }
-            try {    
+            try {   
+                ocupado=true;
                 avion.add(a);
                 vacio.signal();}
             finally{ 
@@ -38,15 +41,16 @@ public class Pista extends ZonaAeropuerto{
     }
     
     // Devuelve true si ha sido posible despegar y false si esta la pista cerrada (no ha sido posible)
-    public boolean despegar(Avion a)throws InterruptedException{
+    public boolean abandonarPista(Avion a)throws InterruptedException{
         if (this.estado ){   
             control.lock();
 
             while (avion.size()==0){
                 vacio.await();
             }
-            try {    
+            try {   
                 avion.remove(a);
+                ocupado=false;
                 lleno.signal();}
             finally{ 
                 control.unlock();
@@ -54,11 +58,17 @@ public class Pista extends ZonaAeropuerto{
         else {return false;}
     }
     
+    
     public boolean getEstado(){
         return estado;
     }
     
     public void setEstado(boolean estado){
-        this.estado=estado;
+        this.estado=estado;//Proteger!!
+    }
+    
+    //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
+    public boolean estaOcupada() {
+        return ocupado;
     }
 }

@@ -2,6 +2,7 @@ package Codigo;
 
 import static java.lang.Math.random;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Aeropuerto {
     private String nombre;
@@ -22,6 +23,7 @@ public class Aeropuerto {
     private AreaRodaje areaRodaje;
     private Aerovia entrada;
     private Aerovia salida;
+    private Semaphore puertas;
     
     public Aeropuerto(String nombre,Aerovia entrada,Aerovia salida){
         this.nombre = nombre;
@@ -42,6 +44,7 @@ public class Aeropuerto {
         areaRodaje = new AreaRodaje();
         this.entrada = entrada;
         this.salida = salida;
+        puertas=new Semaphore(5,true);
     }
 
     public void trasladoAeropuerto(Autobus bus) {
@@ -147,19 +150,43 @@ public class Aeropuerto {
             }
         }
         p.desembarcar(avion);
+        liberarPuertaEmbarque();
         
     }
 
-    public void accederAreaRodaje(Avion avion) throws InterruptedException {
+    public void despegar(Avion avion) throws InterruptedException {
         areaRodaje.accederAreaRodaje(avion);
+        Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+        Pista p;
+        p=obtenerPista();
+        p.accederPista(avion);
+        Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+        //Despegue
+        Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+        p.abandonarPista(avion);
+        salida.accederAerovia(avion);
+        Thread.sleep(15000 + (int) (15000 * Math.random())); // Tiempo aleatorio entre 15 y 30 segundos
     }
 
-    public void despegar(Avion avion) {
-        
-    }
 
-    public void aterrizar(Avion avion) {
-        
+    public void aterrizar(Avion avion) throws InterruptedException {
+        while (true) {
+            Pista pistaDisponible = obtenerPistaDisponible();
+            if (pistaDisponible != null) {
+                entrada.salirAerovia(avion);
+                // Simulate landing
+                Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+                pistaDisponible.accederPista(avion);
+                // Simulate landing process
+                Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+                // Desembarque del avión
+                desembarcar(avion);
+                break; // Avión ha aterrizado, salir del bucle
+            } else {
+                // No hay pistas disponibles, dar un rodeo al aeropuerto
+                Thread.sleep(1000 + (int) (5000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+            }
+        }
     }
 
     public void desembarcar(Avion avion) {
@@ -171,9 +198,9 @@ public class Aeropuerto {
         
     }
     
-    public PuertaEmbarque obtenerPuertaEmbarque(){
+    public PuertaEmbarque obtenerPuertaEmbarque() throws InterruptedException{
         //Mirar si estan ocupadas y devolver una 
-        
+        puertas.acquire();
         switch (1) {
             case 1:
                 if (!gate1.estaOcupado()) {
@@ -196,30 +223,37 @@ public class Aeropuerto {
                     return gate5;
                 }
             default:
-                return obtenerPuertaAleatoria(); // Si todas las puertas están ocupadas, devolvemos null
+                return null; // Si todas las puertas están ocupadas, devolvemos null
 
         }
 
     }
     
-    // Método para obtener una puerta de embarque aleatoria entre gate1 y gate5
-    private PuertaEmbarque obtenerPuertaAleatoria() {
-        Random rand = new Random();
-        int randomNumber = rand.nextInt(5) + 1; // Genera un número aleatorio entre 1 y 5
+    //Suelta la puerta de embarque
+    public void liberarPuertaEmbarque(){
+        puertas.release();
+    }
     
-        switch (randomNumber) {
-            case 1:
-                return gate1;
-            case 2:
-                return gate2;
-            case 3:
-                return gate3;
-            case 4:
-                return gate4;
-            case 5:
-                return gate5;
-            default:
-                return null; // Devolver null en caso de error
+    public Pista obtenerPistaDisponible() {
+        // Iterar sobre las pistas y verificar si alguna está disponible
+        // Si encuentra una pista disponible, la devuelve
+        // Si ninguna pista está disponible, devuelve null
+        if (!pista1.estaOcupada()) {
+            return pista1;
+        } else if (!pista2.estaOcupada()) {
+            return pista2;
+        } else if (!pista3.estaOcupada()) {
+            return pista3;
+        } else if (!pista4.estaOcupada()) {
+            return pista4;
+        } else {
+            return null;
         }
+    }
+
+    private Pista obtenerPista() {
+        
+        return null;
+        
     }
 }
