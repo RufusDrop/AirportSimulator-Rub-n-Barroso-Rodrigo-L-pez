@@ -40,8 +40,38 @@ public class PuertaEmbarque extends ZonaAeropuerto{
         else {return false;}
     }
     
-    // Devuelve true si ha sido posible desembarcar y false si esta puerta no es de desembarque
+    public boolean terminar_embarque(Avion a)throws InterruptedException{
+        if (this.funcion == 'E' || this.funcion == 'M'){   
+            vacio.acquire();
+            try {
+                control.acquire();//Bloqueo para modificar
+                avion.remove(a);
+                ocupado=false;
+                }
+            finally{ 
+                control.release();//Desbloqueo tras modifiar
+                lleno.release();
+                return true;}}
+        else {return false;}
+    }
+    
     public boolean desembarcar(Avion a)throws InterruptedException{
+        if (this.funcion == 'D' || this.funcion == 'M' && !ocupado) { 
+            lleno.acquire();
+            try {
+                control.acquire();//Bloqueo para modificar
+                ocupado=true;
+                avion.add(a);
+                }
+            finally{ 
+                control.release();//Desbloqueo tras modifiar
+                vacio.release();
+                return true;}}
+        else {return false;}
+    }
+    
+    // Devuelve true si ha sido posible desembarcar y false si esta puerta no es de desembarque
+    public boolean terminar_desembarque(Avion a)throws InterruptedException{
         if (this.funcion == 'D' || this.funcion == 'M'){   
             vacio.acquire();
             try {

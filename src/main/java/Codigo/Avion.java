@@ -8,17 +8,19 @@ public class Avion extends Thread{
     private String id;
     private int capacidadMaxima;
     private int pasajeros;
-    private Aeropuerto aeropuerto1;
-    private Aeropuerto aeropuerto2;
+    private Aeropuerto aeropuertoActual;
+    private Aeropuerto madrid;
+    private Aeropuerto barcelona;
     private int numVuelos;
     private boolean ubicacion;//si es true el avión esta en el taller y si es false esta en el hangar(por defecto)
 
     
-    public Avion (String id,int capacidadMaxima,Aeropuerto aeropuerto1,Aeropuerto aeropuerto2){
+    public Avion (String id,int capacidadMaxima,Aeropuerto aeropuertoActual,Aeropuerto madrid,Aeropuerto barcelona){
         this.id=id;
         this.capacidadMaxima=capacidadMaxima;
-        this.aeropuerto1 = aeropuerto1;
-        this.aeropuerto2 = aeropuerto2;
+        this.aeropuertoActual = aeropuertoActual;
+        this.madrid = madrid;
+        this.barcelona = barcelona;
         numVuelos=0;
         ubicacion=false;
         pasajeros=0;
@@ -26,27 +28,27 @@ public class Avion extends Thread{
     
     public void run() {
         //si es false actua como spawn
-        aeropuerto1.accesoHangar(this,false);
+        aeropuertoActual.accesoHangar(this);
         while (true) {
             try {
-                aeropuerto1.accederAreaEstacionamiento(this);
+                aeropuertoActual.accederAreaEstacionamiento(this);
             
-            aeropuerto1.embarcar(this);
-            aeropuerto1.despegar(this);
-            aeropuerto2.aterrizar(this);
-            aeropuerto2.desembarcar(this);
+            aeropuertoActual.embarcar(this);
+            aeropuertoActual.despegar(this);
+            aeropuertoActual.aterrizar(this);
+            aeropuertoActual.desembarcar(this);
             numVuelos++;
             if (numVuelos%15==0){
                 // si es true es inspeccion larga y si es false es revision
-                aeropuerto2.inspeccion(this,true);
+                aeropuertoActual.inspeccion(this,true);
             }else{
                 // si es true es inspeccion larga y si es false es revision
-                aeropuerto2.inspeccion(this,false);
+                aeropuertoActual.inspeccion(this,false);
             }
             Random random = new Random();
             if (random.nextDouble() < 0.5) {
                 //si es true duerme 
-                aeropuerto2.accesoHangar(this,true);
+                aeropuertoActual.accesoHangar(this);
             }else{
                 //si no se queda en el taller
                 ubicacion=true;
@@ -83,7 +85,15 @@ public class Avion extends Thread{
         this.pasajeros=this.pasajeros+pasajeros;
     }
     
-    public void bajar(int pasajeros){
+    public void bajar(){
         this.pasajeros=0;
+    }
+    
+    public void cambiarAeropuerto() {
+        if ("Madrid".equals(this.aeropuertoActual.getNombre())) {
+            this.aeropuertoActual = barcelona;
+        } else if ("Barcelona".equals(this.aeropuertoActual.getNombre())) {
+            this.aeropuertoActual = madrid;
+        }
     }
 }

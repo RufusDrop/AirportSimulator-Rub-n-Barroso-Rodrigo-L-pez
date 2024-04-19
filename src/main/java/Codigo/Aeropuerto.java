@@ -24,6 +24,7 @@ public class Aeropuerto {
     private Aerovia entrada;
     private Aerovia salida;
     private Semaphore puertas;
+    private Semaphore puertas2;
     
     public Aeropuerto(String nombre,Aerovia entrada,Aerovia salida){
         this.nombre = nombre;
@@ -45,6 +46,7 @@ public class Aeropuerto {
         this.entrada = entrada;
         this.salida = salida;
         puertas=new Semaphore(5,true);
+        puertas2=new Semaphore(5,true);
     }
 
     public void trasladoAeropuerto(Autobus bus) {
@@ -89,20 +91,13 @@ public class Aeropuerto {
     }
     
     //si es true duerme y si es false actua como spawn
-    public void accesoHangar(Avion avion, boolean b) {
-        if (b){
-           // Proceso final de reinicio del ciclo del avión depsues de un vuelo
-        }else{
-           //Proceso despues de la generación del avión
+    public void accesoHangar(Avion avion) {
            hangar.accederHangar(avion);
-           
-        }
     }
     
     public void accederAreaEstacionamiento(Avion avion) throws InterruptedException {
         if (avion.getUbicacion()){
-            //El avion se encuentra en el taller
-            taller.salirTaller(avion);
+            //El avion viene en el taller
             areaEstacionamiento.accederAreaEstacionamiento(avion);
         }else{
             //El avion se encuentra en el hangar
@@ -149,7 +144,7 @@ public class Aeropuerto {
                 }
             }
         }
-        p.desembarcar(avion);
+        p.terminar_embarque(avion);
         liberarPuertaEmbarque();
         
     }
@@ -165,6 +160,8 @@ public class Aeropuerto {
         Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
         p.abandonarPista(avion);
         salida.accederAerovia(avion);
+        //Cambiar el aeropuerto en avion
+        avion.cambiarAeropuerto();
         Thread.sleep(15000 + (int) (15000 * Math.random())); // Tiempo aleatorio entre 15 y 30 segundos
     }
 
@@ -179,8 +176,7 @@ public class Aeropuerto {
                 pistaDisponible.accederPista(avion);
                 // Simulate landing process
                 Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-                // Desembarque del avión
-                desembarcar(avion);
+                pistaDisponible.abandonarPista(avion);
                 break; // Avión ha aterrizado, salir del bucle
             } else {
                 // No hay pistas disponibles, dar un rodeo al aeropuerto
@@ -189,13 +185,44 @@ public class Aeropuerto {
         }
     }
 
-    public void desembarcar(Avion avion) {
-        
+    public void desembarcar(Avion avion) throws InterruptedException {
+        areaRodaje.accederAreaRodaje(avion);
+        Thread.sleep(3000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 3 y 5 segundos
+        PuertaEmbarque p;
+        p=obtenerPuertaDesmbarque();
+        areaRodaje.salirAreaRodaje(avion);
+        p.desembarcar(avion);
+        avion.bajar();
+        Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+        p.terminar_desembarque(avion);
+        liberarPuertaDesmbarque();
+        areaEstacionamiento.accederAreaEstacionamiento(avion);
+        Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
     }
     
     //si es true es inspeccion larga y si es false es revision
-    public void inspeccion(Avion avion, boolean b) {
-        
+    public void inspeccion(Avion avion, boolean b) throws InterruptedException {
+        if (b){
+            //Inspeccion larga 
+            taller.accederTaller(avion);
+            //Tiempo acceso taller
+            Thread.sleep(1000); // Tiempo de un segundo
+            //Tiempo revisión
+            Thread.sleep(5000 + (int) (5000 * Math.random())); // Tiempo aleatorio entre 5 y 10 segundos
+            taller.salirTaller(avion);
+            //Tiempo salida taller
+            Thread.sleep(1000); // Tiempo de un segundo
+        }else{
+            //Inspeccion corta 
+            taller.accederTaller(avion);
+            //Tiempo acceso taller
+            Thread.sleep(1000); // Tiempo de un segundo
+            //Tiempo revisión
+            Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
+            taller.salirTaller(avion);
+            //Tiempo salida taller
+            Thread.sleep(1000); // Tiempo de un segundo
+        }
     }
     
     public PuertaEmbarque obtenerPuertaEmbarque() throws InterruptedException{
@@ -221,10 +248,6 @@ public class Aeropuerto {
             case 5:
                 if (!gate5.estaOcupado()) {
                     return gate5;
-                }
-            case 6:
-                if (!gate6.estaOcupado()) {
-                    return gate6;
                 }
             default:
                 return null; // Si todas las puertas están ocupadas, devolvemos null
@@ -256,8 +279,57 @@ public class Aeropuerto {
     }
 
     private Pista obtenerPista() {
+        //Revisar metodo de obtención
+        if (!pista1.estaOcupada()) {
+            return pista1;
+        } else if (!pista2.estaOcupada()) {
+            return pista2;
+        } else if (!pista3.estaOcupada()) {
+            return pista3;
+        } else if (!pista4.estaOcupada()) {
+            return pista4;
+        } else {
+            return null;
+        }
         
-        return null;
-        
+    }
+
+    private PuertaEmbarque obtenerPuertaDesmbarque() throws InterruptedException {
+        //Mirar si estan ocupadas y devolver una 
+        puertas2.acquire();
+            switch (1) {
+                case 1:
+                    if (!gate1.estaOcupado()) {
+                        return gate1;
+                    }
+                case 2:
+                    if (!gate2.estaOcupado()) {
+                        return gate2;
+                    }
+                case 3:
+                    if (!gate3.estaOcupado()) {
+                        return gate3;
+                    }
+                case 4:
+                    if (!gate4.estaOcupado()) {
+                        return gate4;
+                    }
+                case 5:
+                    if (!gate6.estaOcupado()) {
+                        return gate6;
+                    }
+                default:
+                    return null; // Si todas las puertas están ocupadas, devolvemos null
+
+            }
+    }
+    
+    //Suelta la puerta de embarque
+    public void liberarPuertaDesmbarque(){
+        puertas2.release();
+    }
+    
+    public String getNombre(){
+        return nombre;
     }
 }
