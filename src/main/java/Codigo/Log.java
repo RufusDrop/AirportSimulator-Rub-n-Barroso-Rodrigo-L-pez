@@ -15,6 +15,7 @@ public class Log {
     public Log() {
         try {
             // FileWriter configurado para añadir texto al final del archivo existente
+            writer = new PrintWriter(new FileWriter(LOG_FILE, true));
         } catch (IOException e) {
             System.err.println("Error al abrir el archivo de log: " + e.getMessage());
         }
