@@ -14,12 +14,14 @@ public class Pista extends ZonaAeropuerto{
     private Lock control = new ReentrantLock();
     private Condition lleno = control.newCondition();
     private Condition vacio = control.newCondition();
+    private  int numPista;
     
-    public Pista(){
+    public Pista(int numPista){
         super(1);
         avion =  new CopyOnWriteArrayList<>();
         estado=true;
         ocupado=false;
+        this.numPista=numPista;
     }
     
     // Devuelve true si ha sido posible aterrizar y false si esta la pista cerrada (no ha sido posible)
@@ -70,5 +72,14 @@ public class Pista extends ZonaAeropuerto{
     //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
     public boolean estaOcupada() {
         return ocupado;
+    }
+    
+        //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
+    public boolean estaAbierta() {
+        return estado;
+    }
+    
+    public int getNumPista() {
+        return numPista;
     }
 }

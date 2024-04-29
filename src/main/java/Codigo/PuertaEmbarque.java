@@ -13,8 +13,9 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     private Semaphore control;
     private Semaphore lleno;
     private Semaphore vacio;
+    private int numGate;
     
-    public PuertaEmbarque(char funcion){
+    public PuertaEmbarque(char funcion,int numGate){
         super(1);
         avion =  new CopyOnWriteArrayList<>();
         this.funcion=funcion;
@@ -22,6 +23,7 @@ public class PuertaEmbarque extends ZonaAeropuerto{
         lleno= new Semaphore(1,true);
         vacio= new Semaphore(0,true);
         ocupado=false;
+        this.numGate=numGate;
     }
     
     // Devuelve true si ha sido posible embarcar y false si esta puerta no es de embarque
@@ -89,5 +91,9 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
     public boolean estaOcupado() {
         return ocupado;
+    }
+    
+    public int getNumGate() {
+        return numGate;
     }
 }

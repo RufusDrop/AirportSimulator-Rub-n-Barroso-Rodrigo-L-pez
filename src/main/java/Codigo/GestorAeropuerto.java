@@ -26,12 +26,44 @@ public class GestorAeropuerto {
         System.out.println("Bus-"+(i+1)+" creado.");
         bus.start();
         }*/
-
+        
+        
+        //Prueba funcionamiento aviones
         Log log = new Log();
+        for(int i=0;i<30;i++){
+            log.writeLog("PRUEBA:Aeropuerto Aviones", " ");
+        }
+        log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
+        log.writeLog("PRUEBA:Aeropuerto ", "************** PRUEBAS AVIONES ***********");
+        
         Aerovia mad_bar=new Aerovia();
         Aerovia bar_mad=new Aerovia();
         Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",mad_bar,bar_mad,log);
         Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",bar_mad,mad_bar,log);
+        
+        /*for (int i =0;i<100;i++){
+        Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
+        log.writeLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
+        System.out.println("Avión-"+(i+1)+" creado.");
+        avion.start();
+        }*/
+        
+        for (int i =0;i<5;i++){
+        Autobus bus = new Autobus("Bus-"+(i+1),60,madrid);
+        System.out.println("Bus-"+(i+1)+" creado.");
+        bus.start();
+        }
+        
+        for (int i =0;i<5;i++){
+        Autobus bus = new Autobus("Bus-"+(i+6),60,barcelona);
+        System.out.println("Bus-"+(i+1)+" creado.");
+        bus.start();
+        }
+        
+        Avion avion = new Avion("Avion-1",60,madrid,madrid,barcelona);
+        log.writeLog("PRUEBA:Aeropuerto ", "Avión-1 creado.");
+        System.out.println("Avión-1 creado.");
+        avion.start();
     }
     
 }

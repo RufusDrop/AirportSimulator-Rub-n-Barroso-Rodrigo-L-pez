@@ -5411,3 +5411,321 @@
 2024-04-27 19:35:42 - PRUEBA:Aeropuerto Madrid-Barajas - Se bajan 15 pasajeros del autobus Bus-46
 2024-04-27 19:35:42 - PRUEBA:Aeropuerto Madrid-Barajas - Llegada del autobus Bus-10 a la parada del centro de Madrid-Barajas
 2024-04-27 19:35:42 - PRUEBA:Aeropuerto Madrid-Barajas - Autobus Bus-10 recoge 5 pasajeros 
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto  - ******************************************
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto  - ************** PRUEBAS AVIONES ***********
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar  al hangar 
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Hangar
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 21:40:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 21:40:11 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 21:40:11 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:40:14 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:40:14 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 21:40:16 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 21:40:16 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 21:40:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 21:40:40 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar al aeropuerto de Madrid-Barajas
+2024-04-29 21:40:42 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 21:40:42 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:40:46 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:40:46 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 21:40:46 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 21:40:48 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 21:40:48 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 21:40:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 21:40:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 21:40:51 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta pasando la revisión
+2024-04-29 21:40:55 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Taller
+2024-04-29 21:40:56 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 21:40:56 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 21:40:56 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 21:40:56 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 21:40:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 21:40:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:41:03 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:41:03 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 21:41:11 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 21:41:11 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 21:41:28 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 21:41:30 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar al aeropuerto de Madrid-Barajas
+2024-04-29 21:41:34 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 21:41:34 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:41:38 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:41:38 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 21:41:38 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 21:41:39 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 21:41:39 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 21:41:43 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 21:41:43 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 21:41:44 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta pasando la revisión
+2024-04-29 21:41:48 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Taller
+2024-04-29 21:41:49 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 21:41:49 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 21:41:49 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 21:41:49 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 21:41:52 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 21:41:52 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:41:54 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:41:54 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 21:41:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 21:41:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 21:42:25 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 21:42:27 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar al aeropuerto de Madrid-Barajas
+2024-04-29 21:42:31 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 21:42:31 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 21:42:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 21:42:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 21:42:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto  - ******************************************
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto  - ************** PRUEBAS AVIONES ***********
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto  - Avión-1 creado.
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar  al hangar 
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Hangar
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 22:04:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:04:25 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:04:25 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:04:29 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:04:29 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:04:38 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 22:04:38 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:04:59 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:05:03 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de aterrizar al aeropuerto de Barcelona-El Prat
+2024-04-29 22:05:06 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:05:06 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:05:10 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:05:10 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:05:10 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:05:12 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:05:12 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:05:16 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:05:16 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:05:17 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 esta pasando la revisión
+2024-04-29 22:05:21 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Taller
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar  al hangar 
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Hangar
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 esta empezando a embarcar
+2024-04-29 22:05:22 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:05:24 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:05:24 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:05:27 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:05:27 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:05:34 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de despegar del aeropuerto de Barcelona-El Prat
+2024-04-29 22:05:34 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:06:03 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:06:05 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar al aeropuerto de Madrid-Barajas
+2024-04-29 22:06:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:06:09 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:06:12 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:06:12 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:06:12 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:06:14 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:06:14 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:06:15 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:06:15 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:06:16 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta pasando la revisión
+2024-04-29 22:06:20 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Taller
+2024-04-29 22:06:21 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:06:21 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:06:21 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 22:06:21 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:06:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:06:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:06:28 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:06:28 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:06:33 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 22:06:33 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:06:58 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:06:59 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de aterrizar al aeropuerto de Barcelona-El Prat
+2024-04-29 22:07:00 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:07:00 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:07:05 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:07:05 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:07:05 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:07:09 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:07:09 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:07:11 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:07:11 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:07:12 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 esta pasando la revisión
+2024-04-29 22:07:14 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Taller
+2024-04-29 22:07:15 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar  al hangar 
+2024-04-29 22:07:15 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:07:15 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:07:15 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 esta empezando a embarcar
+2024-04-29 22:07:15 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:07:18 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:07:18 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:07:19 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:07:19 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:07:29 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de despegar del aeropuerto de Barcelona-El Prat
+2024-04-29 22:07:29 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:07:49 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:07:51 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar al aeropuerto de Madrid-Barajas
+2024-04-29 22:07:55 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:07:55 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:07:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:07:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:07:59 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:08:00 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:08:00 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:08:02 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:08:02 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:08:03 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta pasando la revisión
+2024-04-29 22:08:07 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Taller
+2024-04-29 22:08:08 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:08:08 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:08:08 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 esta empezando a embarcar
+2024-04-29 22:08:08 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:08:10 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:08:10 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Aviones -  
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto  - ******************************************
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto  - ************** PRUEBAS AVIONES ***********
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto  - Avión-1 creado.
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar  al hangar 
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Hangar
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 está empezando a embarcar
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:23:50 - PRUEBA:Aeropuerto Madrid-Barajas - Hay 0 personas en el aeropuerto
+2024-04-29 22:23:51 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:23:51 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:23:55 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:23:55 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:24:01 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de despegar del aeropuerto de Madrid-Barajas
+2024-04-29 22:24:01 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:24:27 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:24:29 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de aterrizar en el aeropuerto de Barcelona-El Prat
+2024-04-29 22:24:32 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:24:32 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:24:35 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:24:35 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:24:35 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:24:35 - PRUEBA:Aeropuerto Barcelona-El Prat - Hay 0 personas en el aeropuerto
+2024-04-29 22:24:40 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:24:40 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:24:44 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:24:44 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:24:45 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 está pasando la revisión
+2024-04-29 22:24:49 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Taller
+2024-04-29 22:24:50 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Estacionamiento
+2024-04-29 22:24:50 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:24:50 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 está empezando a embarcar
+2024-04-29 22:24:50 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de embarcar 0 pasajeros
+2024-04-29 22:24:50 - PRUEBA:Aeropuerto Barcelona-El Prat - Hay 0 personas en el aeropuerto
+2024-04-29 22:24:51 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 ha terminnado de embarcar
+2024-04-29 22:24:51 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:24:55 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:24:55 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de entrar a la Pista 1
+2024-04-29 22:24:59 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de despegar del aeropuerto de Barcelona-El Prat
+2024-04-29 22:24:59 - PRUEBA:Aeropuerto Barcelona-El Prat - El avión Avion-1 acaba de acceder a la Aerovía
+2024-04-29 22:25:22 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir de la Aerovía 
+2024-04-29 22:25:24 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de aterrizar en el aeropuerto de Madrid-Barajas
+2024-04-29 22:25:26 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Pista 1
+2024-04-29 22:25:26 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de entrar al Área de Rodaje
+2024-04-29 22:25:29 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Rodaje
+2024-04-29 22:25:29 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder a la Puerta de Embarque 1
+2024-04-29 22:25:29 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de bajar a todos los pasajeros
+2024-04-29 22:25:29 - PRUEBA:Aeropuerto Madrid-Barajas - Hay 0 personas en el aeropuerto
+2024-04-29 22:25:34 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de abandonar la Puerta de Embarque 1
+2024-04-29 22:25:34 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Área de Estacionamiento
+2024-04-29 22:25:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Área de Estacionamiento
+2024-04-29 22:25:35 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de acceder al Taller
+2024-04-29 22:25:36 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 está pasando la revisión
+2024-04-29 22:25:39 - PRUEBA:Aeropuerto Madrid-Barajas - El avión Avion-1 acaba de salir del Taller

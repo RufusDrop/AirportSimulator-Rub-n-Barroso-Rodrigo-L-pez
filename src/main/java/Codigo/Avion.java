@@ -90,9 +90,9 @@ public class Avion extends Thread{
     }
     
     public void cambiarAeropuerto() {
-        if ("Madrid".equals(this.aeropuertoActual.getNombre())) {
+        if ("Madrid-Barajas".equals(this.aeropuertoActual.getNombre())) {
             this.aeropuertoActual = barcelona;
-        } else if ("Barcelona".equals(this.aeropuertoActual.getNombre())) {
+        } else if ("Barcelona-El Prat".equals(this.aeropuertoActual.getNombre())) {
             this.aeropuertoActual = madrid;
         }
     }
