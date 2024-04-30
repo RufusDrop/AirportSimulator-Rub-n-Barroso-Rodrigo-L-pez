@@ -28,11 +28,10 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     
     // Devuelve true si ha sido posible embarcar y false si esta puerta no es de embarque
     public boolean embarcar(Avion a)throws InterruptedException{
-        if (this.funcion == 'E' || this.funcion == 'M' && !ocupado) { 
+        if (this.funcion == 'E' || this.funcion == 'M') { 
             lleno.acquire();
             try {
                 control.acquire();//Bloqueo para modificar
-                ocupado=true;
                 avion.add(a);
                 }
             finally{ 
@@ -58,11 +57,10 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     }
     
     public boolean desembarcar(Avion a)throws InterruptedException{
-        if (this.funcion == 'D' || this.funcion == 'M' && !ocupado) { 
+        if (this.funcion == 'D' || this.funcion == 'M') { 
             lleno.acquire();
             try {
                 control.acquire();//Bloqueo para modificar
-                ocupado=true;
                 avion.add(a);
                 }
             finally{ 
@@ -95,5 +93,11 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     
     public int getNumGate() {
         return numGate;
+    }
+    
+    protected void setOcupado(boolean ocupado) throws InterruptedException {
+        control.acquire();
+        this.ocupado=ocupado;
+        control.release();
     }
 }

@@ -30,7 +30,7 @@ public class Aeropuerto {
     
     public Aeropuerto(String nombre,Aerovia entrada,Aerovia salida,Log log){
         this.nombre = nombre;
-        personas = 0;
+        this.personas = 0;
         hangar = new Hangar();
         taller = new Taller();
         gate1 = new PuertaEmbarque('M',1);
@@ -75,7 +75,7 @@ public class Aeropuerto {
             personas=personas+pasajerosSubidos;
             control.release();
             log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" deja "+pasajerosSubidos+" pasajeros en el aeropuerto de "+this.nombre);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto");
+            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } 
@@ -94,7 +94,7 @@ public class Aeropuerto {
             personas =personas- Math.min(pasajerosMontados,personas);
             control.release();
             log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" retira "+Math.min(pasajerosMontados,personas)+" pasajeros del aeropuerto de "+this.nombre);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto");
+            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
             
             // El autobús inicia su marcha en dirección al centro de la ciudad, tiempo aleatorio entre 5 y 10 segundos
             Thread.sleep(5000 + (int) (5000 * Math.random())); // Tiempo aleatorio entre 5 y 10 segundos
@@ -136,7 +136,7 @@ public class Aeropuerto {
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
         
         p.embarcar(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está empezando a embarcar");
+        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está empezando a embarcar en la Puerta de Embarque "+p.getNumGate());
         
         int pasajerosEmbarcados = Math.min(avion.getCapacidadMaxima(), personas);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de embarcar "+pasajerosEmbarcados+" pasajeros");
@@ -144,7 +144,7 @@ public class Aeropuerto {
         personas -= pasajerosEmbarcados;
         control.release();
         avion.subir(pasajerosEmbarcados);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto");
+        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
         Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
 
         int intentos = 0;
@@ -159,14 +159,14 @@ public class Aeropuerto {
             control.release();
             avion.subir(pasajeros);
             log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"Al avión "+ avion.getID() +" se acaban de subir "+pasajeros+" pasajeros más");
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto");
+            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
             Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
 
             intentos++;
         }
     
         p.terminar_embarque(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" ha terminnado de embarcar");
+        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" abandona la Puerta de Embarque "+p.getNumGate());
         liberarPuertaEmbarque();
     }
 
@@ -194,6 +194,7 @@ public class Aeropuerto {
         //Despegue
         Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
         p.abandonarPista(avion);
+        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+p.getNumPista());
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de despegar del aeropuerto de "+this.nombre);
         liberarPista();
         salida.accederAerovia(avion);
@@ -216,6 +217,7 @@ public class Aeropuerto {
                 Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
                 pistaDisponible.accederPista(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de aterrizar en el aeropuerto de "+this.nombre);
+                log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+pistaDisponible.getNumPista());
                 Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
                 
                 pistaDisponible.abandonarPista(avion);
@@ -246,7 +248,7 @@ public class Aeropuerto {
         control.acquire();
         personas += avion.getPasajeros();
         control.release();
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto");
+        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
         
         avion.bajar();
         Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
@@ -298,22 +300,28 @@ public class Aeropuerto {
         puertas.acquire();
 
         if (!gate1.estaOcupado()) {
+            gate1.setOcupado(true);
             return gate1;
         } else if (!gate2.estaOcupado()) {
+            gate2.setOcupado(true);
             return gate2;
         } else if (!gate3.estaOcupado()) {
+            gate3.setOcupado(true);
             return gate3;
         } else if (!gate4.estaOcupado()) {
+            gate4.setOcupado(true);
             return gate4;
         } else {
             if (tipo) {
                 if (!gate5.estaOcupado()) {
+                    gate5.setOcupado(true);
                     return gate5;
                 } else {
                     return null; // Si todas las puertas están ocupadas, devolvemos null
                 }
             } else {
                 if (!gate6.estaOcupado()) {
+                    gate6.setOcupado(true);
                     return gate6;
                 } else {
                     return null; // Si todas las puertas están ocupadas, devolvemos null
@@ -334,12 +342,16 @@ public class Aeropuerto {
         pistas.acquire();
         
         if (!pista1.estaOcupada() && pista1.estaAbierta()) {
+            pista1.setOcupado(true);
             return pista1;
         } else if (!pista2.estaOcupada() && pista2.estaAbierta()) {
+            pista2.setOcupado(true);
             return pista2;
         } else if (!pista3.estaOcupada() && pista3.estaAbierta()) {
+            pista3.setOcupado(true);
             return pista3;
         } else if (!pista4.estaOcupada() && pista4.estaAbierta()) {
+            pista4.setOcupado(true);
             return pista4;
         } else {
             return null;

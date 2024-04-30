@@ -15,6 +15,7 @@ public class Pista extends ZonaAeropuerto{
     private Condition lleno = control.newCondition();
     private Condition vacio = control.newCondition();
     private  int numPista;
+    private Lock protector = new ReentrantLock();
     
     public Pista(int numPista){
         super(1);
@@ -26,14 +27,13 @@ public class Pista extends ZonaAeropuerto{
     
     // Devuelve true si ha sido posible aterrizar y false si esta la pista cerrada (no ha sido posible)
     public boolean accederPista (Avion a)throws InterruptedException{
-        if (this.estado && !ocupado) { 
+        if (this.estado) { 
             control.lock();
 
             while (this.getCapacidadMaxima()== avion.size()){
                 lleno.await();
             }
             try {   
-                ocupado=true;
                 avion.add(a);
                 vacio.signal();}
             finally{ 
@@ -66,12 +66,22 @@ public class Pista extends ZonaAeropuerto{
     }
     
     public void setEstado(boolean estado){
-        this.estado=estado;//Proteger!!
+        protector.lock();
+        try{
+        this.estado=estado;
+        }finally{protector.unlock();}
     }
     
     //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
     public boolean estaOcupada() {
         return ocupado;
+    }
+    
+    public void setOcupado(boolean ocupado) {
+        control.lock();
+        try{
+        this.ocupado=ocupado;
+        }finally{control.unlock();}
     }
     
         //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
