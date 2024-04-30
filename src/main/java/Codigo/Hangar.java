@@ -22,7 +22,9 @@ public class Hangar extends ZonaAeropuerto {
     public void accederHangar(Avion a){
         try {
             control.lock();
-            aviones.add(a);}
+            aviones.add(a);
+            
+        }
         finally{ 
             control.unlock();}    
     }

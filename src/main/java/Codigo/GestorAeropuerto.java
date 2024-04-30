@@ -2,13 +2,14 @@ package Codigo;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+import Interfaces.VentanaPrincipal;
 public class GestorAeropuerto {
-
+    
+    private VentanaPrincipal ventana;
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public GestorAeropuerto(VentanaPrincipal ventanaPrincipal) throws InterruptedException {
         //Log log = new Log();
         //log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", "PRUEBA:Avión AC-1423 es creado");
         
@@ -37,7 +38,7 @@ public class GestorAeropuerto {
         log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
         log.writeLog("PRUEBA:Aeropuerto ", "************** PRUEBAS AVIONES ***********");*/
         
-        
+        ventana = ventanaPrincipal;
         Log log = new Log();
         for(int i=0;i<30;i++){
             log.writeLog("PRUEBA:Aeropuerto ", " ");
@@ -46,10 +47,10 @@ public class GestorAeropuerto {
             log.writeLog("PRUEBA:Aeropuerto ", "*********** PRUEBAS GENERALES ***********");
         
         
-        Aerovia mad_bar=new Aerovia();
-        Aerovia bar_mad=new Aerovia();
-        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",mad_bar,bar_mad,log);
-        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",bar_mad,mad_bar,log);
+        Aerovia mad_bar=new Aerovia(ventana);
+        Aerovia bar_mad=new Aerovia(ventana);
+        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana);
+        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana);
         
         /*for (int i =0;i<21;i++){
             Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);

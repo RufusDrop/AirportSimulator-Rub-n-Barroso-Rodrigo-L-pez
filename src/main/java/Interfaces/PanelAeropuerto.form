@@ -66,12 +66,6 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="jLabelNPasajeros" min="-2" pref="101" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabelPasajeros" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jLabelHangar" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
@@ -98,7 +92,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextFieldPista" pref="175" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPista1" pref="175" max="32767" attributes="0"/>
                                   <Component id="jTextFieldPista2" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldPista3" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldPista4" alignment="0" max="32767" attributes="0"/>
@@ -112,10 +106,6 @@
                       <Component id="jSeparator1" min="-2" pref="527" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jSeparator3" alignment="0" min="-2" pref="512" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Component id="jLabelNombreAeropuerto" min="-2" pref="421" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -156,6 +146,16 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="jLabelNombreAeropuerto" min="-2" pref="421" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="jLabelNPasajeros" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelPasajeros" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
@@ -166,23 +166,25 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="jLabelNombreAeropuerto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelPasajeros" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelNPasajeros" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabelTransfersAeropuerto" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabelTransfersCiudad" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButtonTransfersAeropuerto" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButtonTransfersCiudad" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabelAreaEstacionamiento" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jLabelHangar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelTaller" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabelHangar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelTaller" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -233,7 +235,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelPista1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPista" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldPista1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -491,13 +493,13 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextFieldPista">
+    <Component class="javax.swing.JTextField" name="jTextFieldPista1">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPistaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPista1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAreaEstacionamientoExpandir">

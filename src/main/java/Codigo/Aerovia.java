@@ -1,5 +1,6 @@
 package Codigo;
 
+import Interfaces.VentanaPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -9,10 +10,12 @@ public class Aerovia extends ZonaAeropuerto{
     private String direccion;// Madrid-Barcelona o Barcelona-Madrid
     private List<Thread> aviones;
     private Semaphore control =new Semaphore(1);
+    private VentanaPrincipal ventana;
     
-    public Aerovia(){
+    public Aerovia(VentanaPrincipal ventana){
         super(Integer.MAX_VALUE);
         aviones =  new CopyOnWriteArrayList<>();
+        this.ventana = ventana;
     }
     
     public int getCapacidadActual(){

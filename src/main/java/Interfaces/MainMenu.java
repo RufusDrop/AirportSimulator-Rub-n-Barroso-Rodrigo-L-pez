@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interfaces;
+import Codigo.GestorAeropuerto;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 /**
@@ -40,6 +41,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jButtonComenzarSimulacion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButtonComenzarSimulacion.setText("Comenzar simulación");
+        jButtonComenzarSimulacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonComenzarSimulacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonComenzarSimulacionActionPerformed(evt);
@@ -75,8 +77,15 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButtonComenzarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComenzarSimulacionActionPerformed
         // TODO add your handling code here:
-        new VentanaPrincipal().setVisible(true);
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
         this.setVisible(false);
+        try{
+        GestorAeropuerto gestorAeropuerto = new GestorAeropuerto(ventana);}
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        
         
     }//GEN-LAST:event_jButtonComenzarSimulacionActionPerformed
 

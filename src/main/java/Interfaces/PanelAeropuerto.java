@@ -12,10 +12,10 @@ import javax.swing.DefaultListModel;
  */
 public class PanelAeropuerto extends javax.swing.JPanel {
     private java.awt.Frame parent;
-    private Hangar hangar;
-    private AreaEstacionamiento areaEstacionamiento;
-    private Taller taller;
-    private AreaRodaje areaRodaje;
+    private DialogHangar hangar;
+    private DialogAreaEstacionamiento areaEstacionamiento;
+    private DialogTaller taller;
+    private DialogAreaRodaje areaRodaje;
     /**
      * Creates new form Aeropuerto
      */
@@ -32,6 +32,46 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         jListAreaRodaje.setModel(areaRodajeModel);
 
     }
+    public void actualizarPasajeros(int npasajeros){
+        jLabelNPasajeros.setText(Integer.toString(npasajeros));
+    }
+    public void actualizarTransfersAeropuerto(String text){
+        jButtonTransfersAeropuerto.setText(text);
+    }
+    public void actualizarTransfersCiudad(String text) {
+        jButtonTransfersCiudad.setText(text);
+    }
+    public void actualizarGate1(String text) {
+        jTextFieldGate1.setText(text);
+    }
+    public void actualizarGate2(String text) {
+        jTextFieldGate2.setText(text);
+    }
+    public void actualizarGate3(String text) {
+        jTextFieldGate3.setText(text);
+    }
+    public void actualizarGate4(String text) {
+        jTextFieldGate4.setText(text);
+    }
+    public void actualizarGate5(String text) {
+        jTextFieldGate5.setText(text);
+    }
+    public void actualizarGate6(String text) {
+        jTextFieldGate6.setText(text);
+    }
+    public void actualizarPista1(String text) {
+        jTextFieldPista1.setText(text);
+    }
+    public void actualizarPista2(String text) {
+        jTextFieldPista2.setText(text);
+    }
+    public void actualizarPista3(String text) {
+        jTextFieldPista3.setText(text);
+    }
+    public void actualizarPista4(String text) {
+        jTextFieldPista4.setText(text);
+    }
+    
     public void añadirElemListaHangar(String text){
        DefaultListModel model = (DefaultListModel) jListHangar.getModel();
        model.addElement(text);
@@ -51,14 +91,18 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         }
         if(index != -1){
             model.remove(index);
+            if(hangar != null){
+                hangar.actualizarListaHangar(model);
+            }
         }
-        if(hangar != null){
-           hangar.actualizarListaHangar(model);
-       }
+        
     }
     public void añadirElemListaAreaEstacionamiento(String text) {
-    DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
-    model.addElement(text);
+        DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
+        model.addElement(text);
+        if(areaEstacionamiento != null){
+               areaEstacionamiento.actualizarListaAreaEstacionamiento(model);
+        }
     }
 
     public void eliminarElemListaAreaEstacionamiento(String text) {
@@ -66,12 +110,18 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         int index = model.indexOf(text);
         if(index != -1) {
             model.remove(index);
+            if(areaEstacionamiento != null){
+                areaEstacionamiento.actualizarListaAreaEstacionamiento(model);
+            }
         }
     }
 
     public void añadirElemListaTaller(String text) {
         DefaultListModel model = (DefaultListModel) jListTaller.getModel();
         model.addElement(text);
+        if(areaRodaje != null){
+               areaRodaje.actualizarListaAreaRodaje(model);
+        }
     }
 
     public void eliminarElemListaTaller(String text) {
@@ -79,12 +129,19 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         int index = model.indexOf(text);
         if(index != -1) {
             model.remove(index);
+            if(taller != null){
+               taller.actualizarListaTaller(model);
+            }
         }
     }
 
     public void añadirElemListaAreaRodaje(String text) {
         DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
         model.addElement(text);
+        if(areaRodaje != null){
+               areaRodaje.actualizarListaAreaRodaje(model);
+        }
+        
     }
 
     public void eliminarElemListaAreaRodaje(String text) {
@@ -92,6 +149,9 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         int index = model.indexOf(text);
         if(index != -1) {
             model.remove(index);
+            if(areaRodaje != null){
+               areaRodaje.actualizarListaAreaRodaje(model);
+            }
         }
     }
 
@@ -131,7 +191,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         jButtonHangarExpandir = new javax.swing.JButton();
         jScrollHangar = new javax.swing.JScrollPane();
         jListHangar = new javax.swing.JList<>();
-        jTextFieldPista = new javax.swing.JTextField();
+        jTextFieldPista1 = new javax.swing.JTextField();
         jButtonAreaEstacionamientoExpandir = new javax.swing.JButton();
         jLabelGate2 = new javax.swing.JLabel();
         jScrollPaneProductos1 = new javax.swing.JScrollPane();
@@ -288,11 +348,11 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         });
         jScrollHangar.setViewportView(jListHangar);
 
-        jTextFieldPista.setToolTipText("");
-        jTextFieldPista.setFocusable(false);
-        jTextFieldPista.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPista1.setToolTipText("");
+        jTextFieldPista1.setFocusable(false);
+        jTextFieldPista1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPistaActionPerformed(evt);
+                jTextFieldPista1ActionPerformed(evt);
             }
         });
 
@@ -418,11 +478,6 @@ public class PanelAeropuerto extends javax.swing.JPanel {
                                                     .addComponent(jScrollPaneProductos1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                                     .addComponent(jButtonTallerExpandir, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(jLabelNPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelPasajeros))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabelHangar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -443,7 +498,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
                                     .addComponent(jLabelPista4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldPista, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldPista1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                                     .addComponent(jTextFieldPista2)
                                     .addComponent(jTextFieldPista3)
                                     .addComponent(jTextFieldPista4)))
@@ -452,9 +507,6 @@ public class PanelAeropuerto extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabelNombreAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
@@ -484,7 +536,15 @@ public class PanelAeropuerto extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabelGate2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldGate2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextFieldGate2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabelNombreAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabelNPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPasajeros)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -492,21 +552,22 @@ public class PanelAeropuerto extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabelNombreAeropuerto)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPasajeros)
                     .addComponent(jLabelNPasajeros))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTransfersAeropuerto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelTransfersCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonTransfersAeropuerto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonTransfersCiudad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelAreaEstacionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelHangar)
-                    .addComponent(jLabelTaller))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelHangar)
+                        .addComponent(jLabelTaller)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollAreaEstacionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -550,7 +611,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPista1)
-                            .addComponent(jTextFieldPista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldPista1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPista2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -617,7 +678,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
 
     private void jButtonHangarExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHangarExpandirActionPerformed
         // TODO add your handling code here:
-        hangar = new Hangar(parent, false);
+        hangar = new DialogHangar(parent, false);
         hangar.setVisible(true);
         DefaultListModel model = (DefaultListModel) jListHangar.getModel();
         hangar.actualizarListaHangar(model);
@@ -627,14 +688,16 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jListHangarMouseClicked
 
-    private void jTextFieldPistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPistaActionPerformed
+    private void jTextFieldPista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPista1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPistaActionPerformed
+    }//GEN-LAST:event_jTextFieldPista1ActionPerformed
 
     private void jButtonAreaEstacionamientoExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAreaEstacionamientoExpandirActionPerformed
         // TODO add your handling code here:
-        areaEstacionamiento = new AreaEstacionamiento(parent, false);
+        areaEstacionamiento = new DialogAreaEstacionamiento(parent, false);
         areaEstacionamiento.setVisible(true);
+        DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
+        areaEstacionamiento.actualizarListaAreaEstacionamiento(model);
     }//GEN-LAST:event_jButtonAreaEstacionamientoExpandirActionPerformed
 
     private void jListTallerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTallerMouseClicked
@@ -643,14 +706,18 @@ public class PanelAeropuerto extends javax.swing.JPanel {
 
     private void jButtonTallerExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTallerExpandirActionPerformed
         // TODO add your handling code here:
-        taller = new Taller(parent, false);
+        taller = new DialogTaller(parent, false);
         taller.setVisible(true);
+        DefaultListModel model = (DefaultListModel) jListTaller.getModel();
+        taller.actualizarListaTaller(model);
     }//GEN-LAST:event_jButtonTallerExpandirActionPerformed
 
     private void jButtonAreaRodajeExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAreaRodajeExpandirActionPerformed
         // TODO add your handling code here:
-        areaRodaje = new AreaRodaje(parent, false);
+        areaRodaje = new DialogAreaRodaje(parent, false);
         areaRodaje.setVisible(true);
+        DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
+        areaRodaje.actualizarListaAreaRodaje(model);
     }//GEN-LAST:event_jButtonAreaRodajeExpandirActionPerformed
 
     private void jListAreaEstacionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAreaEstacionamientoMouseClicked
@@ -700,7 +767,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldGate4;
     private javax.swing.JTextField jTextFieldGate5;
     private javax.swing.JTextField jTextFieldGate6;
-    private javax.swing.JTextField jTextFieldPista;
+    private javax.swing.JTextField jTextFieldPista1;
     private javax.swing.JTextField jTextFieldPista2;
     private javax.swing.JTextField jTextFieldPista3;
     private javax.swing.JTextField jTextFieldPista4;
