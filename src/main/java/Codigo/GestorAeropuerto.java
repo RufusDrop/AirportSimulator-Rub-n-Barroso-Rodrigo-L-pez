@@ -38,6 +38,7 @@ public class GestorAeropuerto {
         log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
         log.writeLog("PRUEBA:Aeropuerto ", "************** PRUEBAS AVIONES ***********");*/
         
+        GestorEstadoPrograma gestorEstado = new GestorEstadoPrograma();
         ventana = ventanaPrincipal;
         Log log = new Log();
         for(int i=0;i<30;i++){
@@ -49,8 +50,8 @@ public class GestorAeropuerto {
         
         Aerovia mad_bar=new Aerovia(ventana);
         Aerovia bar_mad=new Aerovia(ventana);
-        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana);
-        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana);
+        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana,gestorEstado);
+        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana,gestorEstado);
         
         /*for (int i =0;i<21;i++){
             Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
@@ -96,12 +97,12 @@ public class GestorAeropuerto {
         
         /*
         //Código main real
-        
+        ventana = ventanaPrincipal;
         Log log = new Log();
-        Aerovia mad_bar=new Aerovia();
-        Aerovia bar_mad=new Aerovia();
-        Aeropuerto madrid =new Aeropuerto(3600,"Madrid-Barajas",mad_bar,bar_mad,log);
-        Aeropuerto barcelona =new Aeropuerto(3600,"Barcelona-El Prat",bar_mad,mad_bar,log);
+        Aerovia mad_bar=new Aerovia(ventana);
+        Aerovia bar_mad=new Aerovia(ventana);
+        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana);
+        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana);
         
         //Código de creación de autobuses
         for (int i = 0; i < 4000; i++) {

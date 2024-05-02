@@ -5,6 +5,7 @@
 package Interfaces;
 
 import javax.swing.DefaultListModel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -32,127 +33,138 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         jListAreaRodaje.setModel(areaRodajeModel);
 
     }
-    public void actualizarPasajeros(int npasajeros){
-        jLabelNPasajeros.setText(Integer.toString(npasajeros));
+    //Metodos para actualizar la interfaz usando swing de forma segura
+    public void actualizarPasajeros(int npasajeros) {
+        SwingUtilities.invokeLater(() -> {
+            jLabelNPasajeros.setText(Integer.toString(npasajeros));
+        });
     }
-    public void actualizarTransfersAeropuerto(String text){
-        jButtonTransfersAeropuerto.setText(text);
+    public void actualizarTransfersAeropuerto(String text) {
+        SwingUtilities.invokeLater(() -> {
+            jButtonTransfersAeropuerto.setText(text);
+        });
     }
+
     public void actualizarTransfersCiudad(String text) {
-        jButtonTransfersCiudad.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jButtonTransfersCiudad.setText(text);
+        });
     }
+
     public void actualizarGate1(String text) {
-        jTextFieldGate1.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate1.setText(text);
+        });
     }
+
     public void actualizarGate2(String text) {
-        jTextFieldGate2.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate2.setText(text);
+        });
     }
+
     public void actualizarGate3(String text) {
-        jTextFieldGate3.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate3.setText(text);
+        });
     }
+
     public void actualizarGate4(String text) {
-        jTextFieldGate4.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate4.setText(text);
+        });
     }
+
     public void actualizarGate5(String text) {
-        jTextFieldGate5.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate5.setText(text);
+        });
     }
+
     public void actualizarGate6(String text) {
-        jTextFieldGate6.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldGate6.setText(text);
+        });
     }
+
     public void actualizarPista1(String text) {
-        jTextFieldPista1.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldPista1.setText(text);
+        });
     }
+
     public void actualizarPista2(String text) {
-        jTextFieldPista2.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldPista2.setText(text);
+        });
     }
+
     public void actualizarPista3(String text) {
-        jTextFieldPista3.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldPista3.setText(text);
+        });
     }
+
     public void actualizarPista4(String text) {
-        jTextFieldPista4.setText(text);
+        SwingUtilities.invokeLater(() -> {
+            jTextFieldPista4.setText(text);
+        });
     }
     
-    public void añadirElemListaHangar(String text){
-       DefaultListModel model = (DefaultListModel) jListHangar.getModel();
-       model.addElement(text);
-       if(hangar != null){
-           hangar.actualizarListaHangar(model);
-       }
-       
+    public void añadirElemListaHangar(String text) {
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListHangar.getModel();
+            model.addElement(text);
+        });
     }
-    public void eliminarElemListaHangar(String text){
-        DefaultListModel model = (DefaultListModel) jListHangar.getModel();
-        int index = -1;
-        for(int i = 0; i < model.getSize(); i++){
-            if(text.equals(model.get(i))){
-                index = i;
-                break;
-            }
-        }
-        if(index != -1){
-            model.remove(index);
-            if(hangar != null){
-                hangar.actualizarListaHangar(model);
-            }
-        }
-        
+
+    public void eliminarElemListaHangar(String text) {
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListHangar.getModel();
+            model.removeElement(text);
+        });
     }
+
     public void añadirElemListaAreaEstacionamiento(String text) {
-        DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
-        model.addElement(text);
-        if(areaEstacionamiento != null){
-               areaEstacionamiento.actualizarListaAreaEstacionamiento(model);
-        }
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
+            model.addElement(text);
+        });
     }
 
     public void eliminarElemListaAreaEstacionamiento(String text) {
-        DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
-        int index = model.indexOf(text);
-        if(index != -1) {
-            model.remove(index);
-            if(areaEstacionamiento != null){
-                areaEstacionamiento.actualizarListaAreaEstacionamiento(model);
-            }
-        }
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
+            model.removeElement(text);
+        });
     }
 
     public void añadirElemListaTaller(String text) {
-        DefaultListModel model = (DefaultListModel) jListTaller.getModel();
-        model.addElement(text);
-        if(areaRodaje != null){
-               areaRodaje.actualizarListaAreaRodaje(model);
-        }
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListTaller.getModel();
+            model.addElement(text);
+        });
     }
 
     public void eliminarElemListaTaller(String text) {
-        DefaultListModel model = (DefaultListModel) jListTaller.getModel();
-        int index = model.indexOf(text);
-        if(index != -1) {
-            model.remove(index);
-            if(taller != null){
-               taller.actualizarListaTaller(model);
-            }
-        }
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListTaller.getModel();
+            model.removeElement(text);
+        });
     }
 
     public void añadirElemListaAreaRodaje(String text) {
-        DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
-        model.addElement(text);
-        if(areaRodaje != null){
-               areaRodaje.actualizarListaAreaRodaje(model);
-        }
-        
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
+            model.addElement(text);
+        });
     }
 
     public void eliminarElemListaAreaRodaje(String text) {
-        DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
-        int index = model.indexOf(text);
-        if(index != -1) {
-            model.remove(index);
-            if(areaRodaje != null){
-               areaRodaje.actualizarListaAreaRodaje(model);
-            }
-        }
+        SwingUtilities.invokeLater(() -> {
+            DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
+            model.removeElement(text);
+        });
     }
 
     /**

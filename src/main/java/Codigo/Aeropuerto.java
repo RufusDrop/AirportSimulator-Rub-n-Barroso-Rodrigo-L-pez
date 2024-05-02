@@ -30,8 +30,9 @@ public class Aeropuerto {
     private Log log ;
     private Semaphore control;
     private VentanaPrincipal ventana;
+    private GestorEstadoPrograma gestorEstado;
     
-    public Aeropuerto(String nombre,int id,Aerovia entrada,Aerovia salida,Log log,VentanaPrincipal ventana){
+    public Aeropuerto(String nombre,int id,Aerovia entrada,Aerovia salida,Log log,VentanaPrincipal ventana,GestorEstadoPrograma gestorEstado){
         this.nombre = nombre;
         this.id = id;
         this.personas = 0;
@@ -56,6 +57,7 @@ public class Aeropuerto {
         this.log= log;
         control=new Semaphore(1);
         this.ventana = ventana;
+        this.gestorEstado = gestorEstado;
     }
 
     public void trasladoAeropuerto(Autobus bus) {
@@ -250,9 +252,9 @@ public class Aeropuerto {
                 entrada.salirAerovia(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir de la Aerovía ");
                 // Logica para actualizar las aerovias en la interfaz
-                if(id == 1){
+                if(id == 2){
                     ventana.eliminarElemListaAeroviaMadridBarcelona(avion.getID()+"("+avion.getPasajeros()+")");
-                }else if(id==2){
+                }else if(id==1){
                     ventana.eliminarElemListaAeroviaBarcelonaMadrid(avion.getID()+"("+avion.getPasajeros()+")");
                 }
                 
