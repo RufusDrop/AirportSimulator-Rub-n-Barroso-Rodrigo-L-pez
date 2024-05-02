@@ -1,27 +1,46 @@
 package Pruebas;
 
 import Codigo.GestorEstadoPrograma;
+import Codigo.SafeSemaphore;
+import java.util.concurrent.Semaphore;
 
 
 public class HiloPruebaPausa extends Thread {
     private GestorEstadoPrograma gestorEstado;
     private int id;
+    private SafeSemaphore safeSemaphore;
+    private Semaphore semaphore = new Semaphore(1);
 
-    public HiloPruebaPausa(int id, GestorEstadoPrograma gestorEstado) {
+    public HiloPruebaPausa(int id, GestorEstadoPrograma gestorEstado,SafeSemaphore safeSemaphore) {
         this.gestorEstado = gestorEstado;
         this.id = id;
+        this.safeSemaphore = safeSemaphore;
     }
 
     @Override
     public void run() {
-        System.out.println("Hilo " + id + " comenzando.");
-        try {
-            safeSleep(6000);  // Dormir durante 6 segundos
-            System.out.println("Hilo " + id + " finalizado.");
+//        PRUEBAS DE SAFESLEEP
+//        System.out.println("Hilo " + id + " comenzando.");
+//        try {
+//            safeSleep(6000);  // Dormir durante 6 segundos
+//            System.out.println("Hilo " + id + " finalizado.");
+//        } catch (InterruptedException e) {
+//            System.out.println("Hilo " + id + " interrumpido.");
+//        }
+//        PRUEBAS DE SAFESEMAPHORE
+            try {
+            System.out.println("Hilo " + id + " intentando adquirir el semáforo.");
+            safeSemaphore.safeAcquire();
+            
+            // Simula algún trabajo
+            safeSleep(2000);
+            System.out.println("Hilo " + id + " liberando el semáforo.");
+            safeSemaphore.release();
         } catch (InterruptedException e) {
-            System.out.println("Hilo " + id + " interrumpido.");
+            System.out.println("Hilo " + id + " interrumpido mientras esperaba o trabajaba.");
         }
     }
+   
 
     public void safeSleep(long sleepMs) throws InterruptedException {
         long startTime = System.currentTimeMillis();
