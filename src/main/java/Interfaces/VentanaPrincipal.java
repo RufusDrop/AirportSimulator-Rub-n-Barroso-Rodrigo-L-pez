@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
 
-import javax.swing.DefaultListModel;
+import Codigo.GestorAeropuerto;
+import javax.swing.border.Border;
+import javax.swing.border.SoftBevelBorder;
 
-/**
- *
- * @author ruben
- */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    
+    private GestorAeropuerto gestorAeropuerto;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -201,7 +196,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void eliminarElemListaAeroviaBarcelonaMadrid(String text){
         panelAerovias.eliminarElemListaAeroviaBarcelonaMadrid(text);
     }
+    
+    public void setGestorAeropuerto(GestorAeropuerto gestor) {
+        this.gestorAeropuerto = gestor;
+    }
+    
     //Metodos para controlar el estado del programa
+    public void pausar(){
+        gestorAeropuerto.pausar();
+    }
+    public void reanudar(){
+        gestorAeropuerto.reanudar();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,6 +233,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelAeropuerto2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabelEstadoPrograma.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelEstadoPrograma.setForeground(new java.awt.Color(255, 255, 255));
         jLabelEstadoPrograma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEstadoPrograma.setText("EN EJECUCIÓN");
 
@@ -238,7 +246,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonPlay.setText("PLAY");
-        jButtonPlay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonPlay.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jButtonPlay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPlayActionPerformed(evt);
@@ -266,7 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(panelAeropuerto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
-                .addGap(673, 673, 673)
+                .addGap(674, 674, 674)
                 .addComponent(jLabelEstadoPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -294,11 +302,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPauseActionPerformed
         // TODO add your handling code here:
         jLabelEstadoPrograma.setText("PAUSADO");
+        // Para establecer el borde
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonPlay.setBorder(raisedSoftBevel);
+        jButtonPlay.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonPause.setBorder(loweredSoftBevel);
+        jButtonPause.setEnabled(false);
+        pausar();
+        
     }//GEN-LAST:event_jButtonPauseActionPerformed
 
     private void jButtonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayActionPerformed
         // TODO add your handling code here:
         jLabelEstadoPrograma.setText("EN EJECUCIÓN");
+        // Para establecer el borde
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonPause.setBorder(raisedSoftBevel);
+        jButtonPause.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonPlay.setBorder(loweredSoftBevel);    
+        jButtonPlay.setEnabled(false);
+        reanudar();
     }//GEN-LAST:event_jButtonPlayActionPerformed
 
     /**

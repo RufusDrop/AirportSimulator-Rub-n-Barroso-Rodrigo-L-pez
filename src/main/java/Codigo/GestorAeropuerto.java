@@ -1,14 +1,14 @@
 package Codigo;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import Interfaces.VentanaPrincipal;
 public class GestorAeropuerto {
     
-    private VentanaPrincipal ventana;
-    /**
-     * @param args the command line arguments
-     */
+    private final VentanaPrincipal ventana;
+    private final GestorEstadoPrograma gestorEstado;
+    private Thread[] buses = new Thread[40]; 
+    private Thread[] aviones = new Thread[80]; 
+   
     public GestorAeropuerto(VentanaPrincipal ventanaPrincipal) throws InterruptedException {
         //Log log = new Log();
         //log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", "PRUEBA:Avión AC-1423 es creado");
@@ -38,7 +38,7 @@ public class GestorAeropuerto {
         log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
         log.writeLog("PRUEBA:Aeropuerto ", "************** PRUEBAS AVIONES ***********");*/
         
-        GestorEstadoPrograma gestorEstado = new GestorEstadoPrograma();
+        gestorEstado = new GestorEstadoPrograma();
         ventana = ventanaPrincipal;
         Log log = new Log();
         for(int i=0;i<30;i++){
@@ -53,23 +53,29 @@ public class GestorAeropuerto {
         Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana,gestorEstado);
         Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana,gestorEstado);
         
-        /*for (int i =0;i<21;i++){
+        /*friteLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
+                System.out.println("Avión-"+i+" creado.");
+                aviones[i].start();
+            }
+        }
+        or (int i =0;i<21;i++){
             Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
             log.writeLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
             System.out.println("Avión-"+i+" creado.");
             avion.start();
         }*/
         
+        
         for (int i =0;i<40;i++){
             if(i%2==0){
-                Autobus bus = new Autobus("Bus-"+(i+1),60,madrid);
+                buses[i] = new Autobus("Bus-"+(i+1),60,madrid);
                 System.out.println("Bus-"+(i+1)+" creado.");
-                bus.start();
+                buses[i].start();
             }
             else if(i%2==1){
-                Autobus bus = new Autobus("Bus-"+(i+1),60,barcelona);
+                buses[i] = new Autobus("Bus-"+(i+1),60,barcelona);
                 System.out.println("Bus-"+(i+1)+" creado.");
-                bus.start();}
+                buses[i].start();}
         }
         
         /*Avion avion = new Avion("Avion-1",60,madrid,madrid,barcelona);
@@ -77,55 +83,55 @@ public class GestorAeropuerto {
         System.out.println("Avión-1 creado.");
         avion.start();*/
         
-        
         for (int i =0;i<40;i++){
             if(i%2==0){
-                Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
+                aviones[i] = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
                 log.writeLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
                 System.out.println("Avión-"+i+" creado.");
-                avion.start();
+                aviones[i].start();
             }
             else if(i%2==1){
-                Avion avion = new Avion("Avion-"+i,60,barcelona,madrid,barcelona);
+                aviones[i] = new Avion("Avion-"+i,60,barcelona,madrid,barcelona);
                 log.writeLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
                 System.out.println("Avión-"+i+" creado.");
-                avion.start();
+                aviones[i].start();
             }
         }
         
         
         
-        /*
-        //Código main real
-        ventana = ventanaPrincipal;
-        Log log = new Log();
-        Aerovia mad_bar=new Aerovia(ventana);
-        Aerovia bar_mad=new Aerovia(ventana);
-        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana);
-        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana);
-        
-        //Código de creación de autobuses
-        for (int i = 0; i < 4000; i++) {
-            String identificador = generarIdentificador(i,true);
-            Aeropuerto aeropuerto = i % 2 == 0 ? madrid : barcelona; // Determina el aeropuerto
-
-            Autobus autobus = new Autobus(identificador, 50, aeropuerto);
-            autobus.start();
-            Thread.sleep((long) ((0.5 + Math.random() * 0.5) * 1000));
-
-        }
-        
-        //Código creación aviones
-        for (int i = 0; i < 8000; i++) {
-            String identificador = generarIdentificador(i);
-            int capacidad = (int) (Math.random() * (300 - 100 + 1) + 100); // Capacidad aleatoria entre 100 y 300
-            Aeropuerto aeropuerto = i % 2 == 0 ? madrid : barcelona; // Determina el aeropuerto
-
-            Avion avion = new Avion(identificador, capacidad, aeropuerto,madrid,barcelona);
-            avion.start();
-            Thread.sleep(1000 + (int) (2000 * Math.random()));
-        }*/
-        
+//        
+//        //Código main real
+//        gestorEstado = new GestorEstadoPrograma();
+//        ventana = ventanaPrincipal;
+//        Log log = new Log();
+//        Aerovia mad_bar=new Aerovia(ventana);
+//        Aerovia bar_mad=new Aerovia(ventana);
+//        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana,gestorEstado);
+//        Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana,gestorEstado);
+//        
+//        //Código de creación de autobuses
+//        for (int i = 0; i < buses.length; i++) {
+//            String identificador = generarIdentificador(i,true);
+//            Aeropuerto aeropuerto = i % 2 == 0 ? madrid : barcelona; // Determina el aeropuerto
+//
+//            buses[i] = new Autobus(identificador, 50, aeropuerto);
+//            buses[i].start();
+//            Thread.sleep((long) ((0.5 + Math.random() * 0.5) * 1000));
+//
+//        }
+//        
+//        //Código creación aviones
+//        for (int i = 0; i < aviones.length; i++) {
+//            String identificador = generarIdentificador(i);
+//            int capacidad = (int) (Math.random() * (300 - 100 + 1) + 100); // Capacidad aleatoria entre 100 y 300
+//            Aeropuerto aeropuerto = i % 2 == 0 ? madrid : barcelona; // Determina el aeropuerto
+//
+//            aviones[i] = new Avion(identificador, capacidad, aeropuerto,madrid,barcelona);
+//            aviones[i].start();
+//            Thread.sleep(1000 + (int) (2000 * Math.random()));
+//        }
+//        
         
     }
     
@@ -144,6 +150,44 @@ public class GestorAeropuerto {
     //Devuelve un id de autobus (B-XXXX) a partir de un int
     private static String generarIdentificador(int numero,boolean bus) {
         return "B-" + String.format("%04d", numero); // Formato de 4 dígitos con ceros a la izquierda
+    }
+    
+    public void pausar(){
+        gestorEstado.pausar();
+        for (Thread hilo : buses) {
+            if (hilo != null && hilo.isAlive()) {
+                hilo.interrupt();  // Interrumpir cada hilo para que maneje la pausa
+            }
+        }
+        for (Thread hilo : aviones) {
+            if (hilo != null && hilo.isAlive()) {
+                hilo.interrupt();  // Interrumpir cada hilo para que maneje la pausa
+            }
+        }
+    }
+    public void reanudar(){
+        gestorEstado.reanudar();
+    }
+    public void safeSleep(long sleepMs) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
+        long sleptTime = 0;
+        long timeLeft = sleepMs;
+
+        while (sleptTime < sleepMs) {
+            try {
+                if (timeLeft > 0) {
+                    Thread.sleep(timeLeft);
+                }
+                break; // Si se completa el tiempo de sueño, salimos del bucle
+            } catch (InterruptedException e) {
+                // Actualizamos el tiempo dormido y el tiempo restante.
+                sleptTime = System.currentTimeMillis() - startTime;
+                timeLeft = sleepMs - sleptTime;
+                // Verificar el estado de pausa
+                gestorEstado.verificarEstado();
+                // No es necesario limpiar la interrupción aquí, ya que el flag ya está limpio.
+            }
+        }
     }
     
 }

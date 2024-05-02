@@ -17,7 +17,7 @@ public class GestorPruebaPausa {
 
         // Esperar 4 segundos antes de interrumpir todos los hilos
         Thread.sleep(4000);
-        System.out.println("Interrupción");
+        System.out.println("Pausa");
         gestorEstado.pausar();  // Pausar todos los hilos
         for (Thread hilo : hilos) {
             hilo.interrupt();

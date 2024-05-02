@@ -77,14 +77,17 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButtonComenzarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComenzarSimulacionActionPerformed
         // TODO add your handling code here:
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        ventana.setVisible(true);
-        this.setVisible(false);
-        try{
-        GestorAeropuerto gestorAeropuerto = new GestorAeropuerto(ventana);}
-        catch (InterruptedException e){
+        
+        try {
+            VentanaPrincipal ventana = new VentanaPrincipal();
+            GestorAeropuerto gestorAeropuerto = new GestorAeropuerto(ventana);
+            ventana.setGestorAeropuerto(gestorAeropuerto);
+            ventana.setVisible(true);
+            this.setVisible(false);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        
         
         
     }//GEN-LAST:event_jButtonComenzarSimulacionActionPerformed
