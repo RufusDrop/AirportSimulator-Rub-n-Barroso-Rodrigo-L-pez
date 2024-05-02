@@ -16,7 +16,9 @@ public class GestorEstadoPrograma {
 
     public synchronized void verificarEstado() throws InterruptedException {
         while (pausado) {
-            wait();  // Pone el hilo en espera si la simulación está pausada
+            System.out.println("Hilo " + Thread.currentThread().getId() + " pausado.");
+            wait();
+            System.out.println("Hilo " + Thread.currentThread().getId() + " reanudado.");
         }
     }
 }
