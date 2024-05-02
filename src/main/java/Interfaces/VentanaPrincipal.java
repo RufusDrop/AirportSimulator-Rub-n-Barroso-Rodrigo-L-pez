@@ -201,7 +201,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void eliminarElemListaAeroviaBarcelonaMadrid(String text){
         panelAerovias.eliminarElemListaAeroviaBarcelonaMadrid(text);
     }
-    
+    //Metodos para controlar el estado del programa
 
     /**
      * This method is called from within the constructor to initialize the form.

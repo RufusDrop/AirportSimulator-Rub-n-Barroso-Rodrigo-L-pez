@@ -60,9 +60,10 @@ public class Aeropuerto {
         this.gestorEstado = gestorEstado;
     }
 
-    public void trasladoAeropuerto(Autobus bus) {
+    public void trasladoAeropuerto(Autobus bus){
         // Lógica específica del traslado desde la ciudad al aeropuerto
         try {
+            gestorEstado.verificarEstado();
             /// Llegada a la parada del centro de la ciudad, tiempo aleatorio entre 2 y 5 segundos
             Thread.sleep(2000 + (int) (3000 * Math.random())); // Tiempo aleatorio entre 2 y 5 segundos
             log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" a la parada del centro de "+this.nombre);
@@ -90,7 +91,7 @@ public class Aeropuerto {
         } 
     }
 
-    public void trasladoCiudad(Autobus bus) {
+    public void trasladoCiudad(Autobus bus){
         try {
             // Espera a que suban nuevos pasajeros durante un tiempo aleatorio entre 2 y 5 segundos
             Thread.sleep(2000 + (int) (3000 * Math.random())); // Tiempo aleatorio entre 2 y 5 segundos
@@ -120,7 +121,7 @@ public class Aeropuerto {
     }
     
     //si es true duerme y si es false actua como spawn
-    public void accesoHangar(Avion avion) {
+    public void accesoHangar(Avion avion){
         hangar.accederHangar(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar  al hangar ");
         ventana.añadirElemListaHangar(avion.getID(),id);
@@ -361,7 +362,21 @@ public class Aeropuerto {
             Thread.sleep(1000); // Tiempo de un segundo
         }
     }
-    
+    public void safeSleep(long sleepMs) throws InterruptedException {
+        long endTime = System.currentTimeMillis() + sleepMs;
+        while (System.currentTimeMillis() < endTime) {
+            try {
+                gestorEstado.verificarEstado();  // Verifica primero para manejar la pausa antes de intentar dormir
+                long timeLeft = endTime - System.currentTimeMillis();
+                if (timeLeft > 0) {
+                    Thread.sleep(timeLeft);
+                }
+                break; // Salimos del bucle si el sleep se completa sin interrupciones
+            } catch (InterruptedException e) {
+                gestorEstado.verificarEstado();  // Esto puede bloquear el hilo si el sistema está pausado
+            }
+        }
+    }
     public PuertaEmbarque obtenerPuertaEmbarque(boolean tipo) throws InterruptedException {
         // Si tipo es true es embarque y si es false es desembarque
         
