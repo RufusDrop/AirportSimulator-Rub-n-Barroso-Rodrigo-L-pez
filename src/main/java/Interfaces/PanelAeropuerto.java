@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Interfaces;
 
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author ruben
- */
+
 public class PanelAeropuerto extends javax.swing.JPanel {
     private java.awt.Frame parent;
     private DialogHangar hangar;
@@ -27,11 +20,15 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         DefaultListModel<String> areaEstacionamientoModel = new DefaultListModel<>();
         DefaultListModel<String> tallerModel = new DefaultListModel<>();
         DefaultListModel<String> areaRodajeModel = new DefaultListModel<>();
+        actualizarPasajeros(0);
         jListHangar.setModel(hangarModel);
         jListAreaEstacionamiento.setModel(areaEstacionamientoModel);
         jListTaller.setModel(tallerModel);
         jListAreaRodaje.setModel(areaRodajeModel);
 
+    }
+    public void actualizarNombre(String text){
+        jLabelNombreAeropuerto.setText(text);
     }
     //Metodos para actualizar la interfaz usando swing de forma segura
     public void actualizarPasajeros(int npasajeros) {

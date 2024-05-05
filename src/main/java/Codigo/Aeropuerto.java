@@ -5,6 +5,9 @@ import static java.lang.Math.random;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Aeropuerto {
     private String nombre;
@@ -32,6 +35,9 @@ public class Aeropuerto {
     private SafeSemaphore control;
     private VentanaPrincipal ventana;
     private GestorEstadoPrograma gestorEstado;
+    private SafeSemaphore embarque;
+    private SafeSemaphore desembarque;
+    private SafeSemaphore mixtas;
     
     public Aeropuerto(String nombre,int id,Aerovia entrada,Aerovia salida,Log log,VentanaPrincipal ventana,GestorEstadoPrograma gestorEstado){
         this.nombre = nombre;
@@ -53,10 +59,13 @@ public class Aeropuerto {
         areaRodaje = new AreaRodaje();
         this.entrada = entrada;
         this.salida = salida;
-        puertas=new SafeSemaphore(5,true,gestorEstado);
+        puertas=new SafeSemaphore(6,true,gestorEstado);
         pistas=new SafeSemaphore(4,true,gestorEstado);
         this.log= log;
-        control=new SafeSemaphore(1,gestorEstado);
+        control=new SafeSemaphore(1,true,gestorEstado);
+        embarque = new SafeSemaphore(5,true,gestorEstado);
+        desembarque = new SafeSemaphore(5,gestorEstado);
+        mixtas = new SafeSemaphore(4,gestorEstado);
         this.ventana = ventana;
         this.gestorEstado = gestorEstado;
     }
@@ -206,7 +215,7 @@ public class Aeropuerto {
     
         p.terminar_embarque(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" abandona la Puerta de Embarque "+p.getNumGate());
-        liberarPuertaEmbarque();
+        liberarPuertaEmbarque(true,p);
         //Logica para vaciar la puerta de embarque
         text = "";
         actualizarGate(p.getNumGate(),text);
@@ -344,7 +353,7 @@ public class Aeropuerto {
         //Logica para actualizar los gates en la interfaz
         text = "";
         actualizarGate(p.getNumGate(),text);
-        liberarPuertaEmbarque();
+        liberarPuertaEmbarque(false,p);
         areaEstacionamiento.accederAreaEstacionamiento(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Área de Estacionamiento");
         ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
@@ -422,9 +431,31 @@ public class Aeropuerto {
     }
     public PuertaEmbarque obtenerPuertaEmbarque(boolean tipo) throws InterruptedException {
         // Si tipo es true es embarque y si es false es desembarque
-        
-        puertas.safeAcquire();
-
+        puertas.safeAcquire(); 
+        if(tipo){
+            embarque.safeAcquire(); /////6 puertas 5 embarque 1espera, uno de los 
+            if (!gate5.estaOcupado()) {
+                    gate5.setOcupado(true);
+                    return gate5;
+                }
+            else{
+                return obtenerMixto();
+            }
+        }
+        else{
+            desembarque.safeAcquire();
+            if (!gate6.estaOcupado()) {
+                    gate6.setOcupado(true);
+                    return gate6;
+                }
+            else{
+                 return obtenerMixto();
+             }
+        }
+   
+    }
+    public PuertaEmbarque obtenerMixto() throws InterruptedException {
+        mixtas.safeAcquire();
         if (!gate1.estaOcupado()) {
             gate1.setOcupado(true);
 
@@ -438,30 +469,25 @@ public class Aeropuerto {
         } else if (!gate4.estaOcupado()) {
             gate4.setOcupado(true);
             return gate4;
-        } else {
-            if (tipo) {
-                if (!gate5.estaOcupado()) {
-                    gate5.setOcupado(true);
-                    return gate5;
-                } else {
-                    return null; // Si todas las puertas están ocupadas, devolvemos null
-                }
-            } else {
-                if (!gate6.estaOcupado()) {
-                    gate6.setOcupado(true);
-                    return gate6;
-                } else {
-                    return null; // Si todas las puertas están ocupadas, devolvemos null
-                }
-            }
         }
+        return null; // Si todas las puertas están ocupadas, devolvemos null
     }
 
 
     
     //Suelta la puerta de embarque
-    public void liberarPuertaEmbarque(){
-        puertas.release();
+    public void liberarPuertaEmbarque(boolean tipo,PuertaEmbarque p){
+        if(p == gate1 ||p == gate2 ||p == gate3 ||p == gate4){
+            mixtas.release();
+        }
+        if(tipo){
+            embarque.release();
+        }else{
+            desembarque.release();
+        }
+       puertas.release();
+
+        
     }
     
 

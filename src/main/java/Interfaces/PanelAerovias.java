@@ -1,30 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Interfaces;
 
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author ruben
- */
 public class PanelAerovias extends javax.swing.JPanel {
-
+    private DefaultListModel<String> aeroviaMadridBarcelonaModel;
+    private DefaultListModel<String> aeroviaBarcelonaMadridModel;
     /**
      * Creates new form PanelAerovias
      */
     public PanelAerovias() {
         initComponents();
-        DefaultListModel<String> aeroviaMadridBarcelonaModel = new DefaultListModel<>();
-        DefaultListModel<String> aeroviaBarcelonaMadridModel = new DefaultListModel<>();
+        aeroviaMadridBarcelonaModel = new DefaultListModel<>();
+        aeroviaBarcelonaMadridModel = new DefaultListModel<>();
         jListAeroviaMadridBarcelona.setModel(aeroviaMadridBarcelonaModel);
         jListAeroviaBarcelonaMadrid.setModel(aeroviaBarcelonaMadridModel);
     }
     public void añadirElemListaAeroviaMadridBarcelona(String text) {
         DefaultListModel model = (DefaultListModel) jListAeroviaMadridBarcelona.getModel();
         model.addElement(text);
+        
     }
     public void eliminarElemListaAeroviaMadridBarcelona(String text){
         DefaultListModel model = (DefaultListModel) jListAeroviaMadridBarcelona.getModel();
@@ -57,6 +51,18 @@ public class PanelAerovias extends javax.swing.JPanel {
             model.remove(index);
         }
         
+    }
+    public void setModelAeroviaMadridBarcelona(DefaultListModel<String> model){
+        jListAeroviaMadridBarcelona.setModel(aeroviaMadridBarcelonaModel);
+    }
+    public void setModelAeroviaBarcelonaMadrid(DefaultListModel<String> model){
+         jListAeroviaBarcelonaMadrid.setModel(aeroviaBarcelonaMadridModel);
+    }
+    public DefaultListModel<String> getModelAeroviaMadridBarcelona(){
+        return aeroviaMadridBarcelonaModel;
+    }
+    public DefaultListModel<String> getModelAeroviaBarcelonaMadrid(){
+        return aeroviaBarcelonaMadridModel;
     }
     
 

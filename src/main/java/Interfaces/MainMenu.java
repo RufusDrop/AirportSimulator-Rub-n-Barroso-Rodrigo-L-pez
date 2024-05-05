@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
 import Codigo.GestorAeropuerto;
 import com.formdev.flatlaf.FlatDarkLaf;
 
-/**
- *
- * @author ruben
- */
 public class MainMenu extends javax.swing.JFrame {
 
     /**
@@ -77,16 +69,20 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jButtonComenzarSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComenzarSimulacionActionPerformed
         // TODO add your handling code here:
-        
-        try {
-            VentanaPrincipal ventana = new VentanaPrincipal();
-            GestorAeropuerto gestorAeropuerto = new GestorAeropuerto(ventana);
-            ventana.setGestorAeropuerto(gestorAeropuerto);
-            ventana.setVisible(true);
-            this.setVisible(false);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
+        this.setVisible(false);
+
+        // Ejecutar la creación del gestor en un nuevo hilo para evitar bloquear el EDT
+        new Thread(() -> {
+            try {
+                GestorAeropuerto gestorAeropuerto = new GestorAeropuerto(ventana);
+                ventana.setGestorAeropuerto(gestorAeropuerto);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.out.println("Error creacion ventana principal");
+            }
+        }).start();
         
         
         

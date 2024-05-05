@@ -33,7 +33,7 @@ public class HiloPruebaPausa extends Thread {
             safeSemaphore.safeAcquire();
             
             // Simula algún trabajo
-            safeSleep(2000);
+            safeSleep(6000);
             System.out.println("Hilo " + id + " liberando el semáforo.");
             safeSemaphore.release();
         } catch (InterruptedException e) {

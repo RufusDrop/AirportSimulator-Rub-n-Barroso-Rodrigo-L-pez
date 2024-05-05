@@ -94,6 +94,9 @@ public class PuertaEmbarque extends ZonaAeropuerto{
     public int getNumGate() {
         return numGate;
     }
+    public int getFuncion(){
+        return funcion;
+    }
     
     protected void setOcupado(boolean ocupado) throws InterruptedException {
         control.acquire();

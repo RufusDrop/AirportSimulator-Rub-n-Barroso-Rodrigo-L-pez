@@ -12,6 +12,7 @@ public class Autobus extends Thread{
     }
     
     public void run(){
+        System.out.println("Bus creado");
         while (true) {
             //Proceso de traslado de pasajeros desde la ciudad hasta el aeropuerto
             aeropuerto.trasladoAeropuerto(this);
