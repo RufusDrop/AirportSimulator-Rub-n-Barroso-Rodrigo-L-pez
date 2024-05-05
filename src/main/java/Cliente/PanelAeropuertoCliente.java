@@ -1,5 +1,6 @@
 package Cliente;
 
+import Codigo.Servidor;
 import Codigo.ServidorImp;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -37,7 +38,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                 Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
                 // Obtener la referencia remota del objeto del servidor
-                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
                 // Usar los métodos remotos
                 jLabelNPasajeros.setText(Integer.toString(servidor.numPasajeros(id)));
@@ -415,12 +416,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(1, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
 
     }//GEN-LAST:event_jButtonCerrarPista1ActionPerformed
@@ -439,12 +441,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(1, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonAbrirPista1ActionPerformed
 
@@ -461,12 +464,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(2, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonAbrirPista2ActionPerformed
 
@@ -483,12 +487,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(2, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
         
     }//GEN-LAST:event_jButtonCerrarPista2ActionPerformed
@@ -506,12 +511,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(3, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonCerrarPista3ActionPerformed
 
@@ -528,12 +534,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(3, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonAbrirPista3ActionPerformed
 
@@ -550,12 +557,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(4, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButtonAbrirPista4ActionPerformed
 
@@ -572,12 +580,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             
             // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+            Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(4, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
+            e.printStackTrace();
         }
         
     }//GEN-LAST:event_jButtonCerrarPista4ActionPerformed

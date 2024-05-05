@@ -69,8 +69,8 @@ public class GestorAeropuerto {
         
            
 
-//        // Iniciar el servidor RMI
-//        iniciarServidorRMI(madrid,barcelona);
+        // Iniciar el servidor RMI
+        iniciarServidorRMI(madrid,barcelona);
     }
     
     //Devuelve un id de avión (YY-XXXX) a partir de un int
@@ -97,10 +97,10 @@ public class GestorAeropuerto {
             Registry registry = LocateRegistry.createRegistry(1099);
             
             // Crear una instancia de la implementación de la interfaz remota
-            ServidorImp airportOperations = new ServidorImp(madrid,barcelona);
+            ServidorImp servidor = new ServidorImp(madrid,barcelona);
             
             // Registrar la instancia en el registro RMI
-            registry.rebind("AirportOperations", airportOperations);
+            registry.rebind("Servidor", servidor);
             
             System.out.println("Servidor RMI iniciado...");
         } catch (Exception e) {

@@ -604,6 +604,7 @@ public class Aeropuerto {
         switch (numeroPista) {
             case 1:
                 pista1.setEstado(false);
+                System.out.println("El estado es :"+pista1.getEstado());
                 break;
             case 2:
                 pista2.setEstado(false);
@@ -621,6 +622,7 @@ public class Aeropuerto {
         switch (numeroPista) {
             case 1:
                 pista1.setEstado(true);
+                System.out.println("El estado es :"+pista1.getEstado());
                 break;
             case 2:
                 pista2.setEstado(true);

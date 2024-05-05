@@ -12,7 +12,7 @@ public class ClienteAeropuerto extends javax.swing.JFrame {
     public ClienteAeropuerto() {
         initComponents();
         panelAeropuertoCliente1.setId(1);
-        panelAeropuertoCliente1.setId(2);
+        panelAeropuertoCliente2.setId(2);
         recibirInfoServer();
         
     }
