@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.swing.DefaultListModel;
 
 public class Aeropuerto {
     private String nombre;
@@ -581,12 +582,22 @@ public class Aeropuerto {
         return areaRodaje.getCapacidadActual();
     } 
     
-    public List<Thread> avionesAerovia1(){
-        return entrada.getAviones();
+    public DefaultListModel avionesAerovia1(){
+        List<Avion> aviones = entrada.getAviones();
+        DefaultListModel model = new DefaultListModel();
+        for (Avion avion : aviones) {
+        model.addElement(avion.getId() + "(" + avion.getPasajeros() + ")");
+        }
+        return model;
     }
     
-    public List<Thread> avionesAerovia2(){
-        return salida.getAviones();
+    public DefaultListModel avionesAerovia2(){
+        List<Avion> aviones = salida.getAviones();
+        DefaultListModel model = new DefaultListModel();
+        for (Avion avion : aviones) {
+        model.addElement(avion.getId() + "(" + avion.getPasajeros() + ")");
+        }
+        return model;
     }
     
     public void cerrarPista(int numeroPista) {

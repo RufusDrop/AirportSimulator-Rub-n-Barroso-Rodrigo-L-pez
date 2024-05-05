@@ -1,5 +1,8 @@
 package Interfaces;
 
+import Codigo.ServidorImp;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import javax.swing.DefaultListModel;
 
 public class PanelAerovias extends javax.swing.JPanel {
@@ -52,11 +55,34 @@ public class PanelAerovias extends javax.swing.JPanel {
         }
         
     }
-    public void setModelAeroviaMadridBarcelona(DefaultListModel<String> model){
-        jListAeroviaMadridBarcelona.setModel(aeroviaMadridBarcelonaModel);
+    public void setModelAeroviaMadridBarcelona(){
+        try {
+                // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+                // Usar los métodos remotos
+                jListAeroviaMadridBarcelona.setModel(servidor.avionesAerovia1());
+            } catch (Exception e) {
+                System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
+        
     }
-    public void setModelAeroviaBarcelonaMadrid(DefaultListModel<String> model){
-         jListAeroviaBarcelonaMadrid.setModel(aeroviaBarcelonaMadridModel);
+    public void setModelAeroviaBarcelonaMadrid(){
+        try {
+                // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+                // Usar los métodos remotos
+                jListAeroviaBarcelonaMadrid.setModel(servidor.avionesAerovia2());
+            } catch (Exception e) {
+                System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }
     public DefaultListModel<String> getModelAeroviaMadridBarcelona(){
         return aeroviaMadridBarcelonaModel;

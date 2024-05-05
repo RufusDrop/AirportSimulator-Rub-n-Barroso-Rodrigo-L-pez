@@ -7,8 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Semaphore;
 
 public class Aerovia extends ZonaAeropuerto{
-    private String direccion;// Madrid-Barcelona o Barcelona-Madrid
-    private List<Thread> aviones;
+    private List<Avion> aviones;
     private Semaphore control =new Semaphore(1);
     private VentanaPrincipal ventana;
     
@@ -38,7 +37,7 @@ public class Aerovia extends ZonaAeropuerto{
             control.release();}    
     }
     
-    public List<Thread> getAviones(){
+    public List<Avion> getAviones(){
         return aviones;
     }
 }

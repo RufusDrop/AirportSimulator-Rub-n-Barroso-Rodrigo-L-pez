@@ -1,21 +1,113 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package Cliente;
 
-/**
- *
- * @author ruben
- */
+import Codigo.ServidorImp;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import javax.swing.border.Border;
+import javax.swing.border.SoftBevelBorder;
+
+
 public class PanelAeropuertoCliente extends javax.swing.JPanel {
 
+    private int id;
     /**
      * Creates new form PanelAeropuertoCliente
      */
     public PanelAeropuertoCliente() {
         initComponents();
+        
     }
+    public void setId(int id){
+        this.id = id;
+    }
+    public void actualizarInterfaz(){
+        actualizarNumPasajeros();
+        actualizarNumAvionesHangar();
+        actualizarNumAvionesTaller();
+        actualizarNumAvionesAreaEstacionamiento();
+        actualizarNumAvionesAreaRodaje();
+        
+    }
+    //Metodos de actualizacion de la interfaz
+    
+    
+    private void actualizarNumPasajeros() {
+        try {
+                // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+                // Usar los métodos remotos
+                jLabelNPasajeros.setText(Integer.toString(servidor.numPasajeros(id)));
+            } catch (Exception e) {
+                System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
+    }
+
+    private void actualizarNumAvionesHangar(){
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos para actualizar el número de aviones en el hangar
+            jTextFieldHangar.setText(Integer.toString(servidor.numAvionesHangar(id)));
+        } catch (Exception e) {
+            System.err.println("Error al actualizar número de aviones en el hangar: " + e.getMessage());
+        }
+    }
+    
+    private void actualizarNumAvionesTaller() {
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos para actualizar el número de aviones en taller
+            jTextFieldTaller.setText(Integer.toString(servidor.numAvionesTaller(id)));
+        } catch (Exception e) {
+            System.err.println("Error al actualizar número de aviones en taller: " + e.getMessage());
+        }
+    }
+
+    
+    private void actualizarNumAvionesAreaEstacionamiento() {
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos para actualizar el número de aviones en el área de estacionamiento
+            jTextFieldAreaEstacionamiento.setText(Integer.toString(servidor.numAvionesAEstacionamiento(id)));
+        } catch (Exception e) {
+            System.err.println("Error al actualizar número de aviones en área de estacionamiento: " + e.getMessage());
+        }
+    }
+    
+    private void actualizarNumAvionesAreaRodaje() {
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos para actualizar el número de aviones en el área de rodaje
+            jTextFieldAreaRodaje.setText(Integer.toString(servidor.numAvionesAreaRodaje(id)));
+        } catch (Exception e) {
+            System.err.println("Error al actualizar número de aviones en área de rodaje: " + e.getMessage());
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -210,23 +302,30 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelPasajeros))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabelNombreAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelAvionesHangar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldHangar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelAvionesTaller)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelAvionesAreaEstacionamento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldAreaEstacionamiento))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelAvionesTaller)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelAvionesAreaEstacionamento)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldAreaEstacionamiento))
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabelAvionesRodaje)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldAreaRodaje, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelAvionesHangar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldHangar))
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabelPista1)
@@ -239,28 +338,22 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jButtonCerrarPista2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(0, 0, 0)
-                                            .addComponent(jButtonAbrirPista2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldAreaRodaje, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelPista2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButtonCerrarPista3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(jButtonAbrirPista3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelPista4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButtonCerrarPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(jButtonAbrirPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(14, 14, 14))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabelNombreAeropuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jButtonAbrirPista2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(44, 44, 44)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabelPista2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jButtonCerrarPista3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(jButtonAbrirPista3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabelPista4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jButtonCerrarPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(jButtonAbrirPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(14, 14, 14))))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -276,19 +369,19 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAvionesHangar)
                     .addComponent(jTextFieldHangar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAvionesTaller)
                     .addComponent(jTextFieldTaller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAvionesAreaEstacionamento)
                     .addComponent(jTextFieldAreaEstacionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAvionesRodaje)
                     .addComponent(jTextFieldAreaRodaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPista1)
                     .addComponent(jLabelPista2)
@@ -304,59 +397,189 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                     .addComponent(jLabelPista4)
                     .addComponent(jButtonAbrirPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCerrarPista4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCerrarPista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista1ActionPerformed
         // TODO add your handling code here:
-//        jLabelEstadoPrograma.setText("PAUSADO");
-//        // Para establecer el borde
-//        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
-//        jButtonAbrirPista1.setBorder(raisedSoftBevel);
-//        jButtonAbrirPista1.setEnabled(true);
-//        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
-//        jButtonCerrarPista1.setBorder(loweredSoftBevel);
-//        jButtonCerrarPista1.setEnabled(false);
-//        pausar();
+        // Para establecer el borde
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonAbrirPista1.setBorder(raisedSoftBevel);
+        jButtonAbrirPista1.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonCerrarPista1.setBorder(loweredSoftBevel);
+        jButtonCerrarPista1.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.cerrarPista(1, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
 
     }//GEN-LAST:event_jButtonCerrarPista1ActionPerformed
 
     private void jButtonAbrirPista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista1ActionPerformed
         // TODO add your handling code here:
-//        jLabelEstadoPrograma.setText("EN EJECUCIÓN");
-//        // Para establecer el borde
-//        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
-//        jButtonCerrarPista1.setBorder(raisedSoftBevel);
-//        jButtonCerrarPista1.setEnabled(true);
-//        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
-//        jButtonAbrirPista1.setBorder(loweredSoftBevel);
-//        jButtonAbrirPista1.setEnabled(false);
-//        reanudar();
+        // Para establecer el borde
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonCerrarPista1.setBorder(raisedSoftBevel);
+        jButtonCerrarPista1.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonAbrirPista1.setBorder(loweredSoftBevel);
+        jButtonAbrirPista1.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.abrirPista(1, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonAbrirPista1ActionPerformed
 
     private void jButtonAbrirPista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista2ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonCerrarPista2.setBorder(raisedSoftBevel);
+        jButtonCerrarPista2.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonAbrirPista2.setBorder(loweredSoftBevel);
+        jButtonAbrirPista2.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.abrirPista(2, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonAbrirPista2ActionPerformed
 
     private void jButtonCerrarPista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista2ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonAbrirPista2.setBorder(raisedSoftBevel);
+        jButtonAbrirPista2.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonCerrarPista2.setBorder(loweredSoftBevel);
+        jButtonCerrarPista2.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.cerrarPista(2, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButtonCerrarPista2ActionPerformed
 
     private void jButtonCerrarPista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista3ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonAbrirPista3.setBorder(raisedSoftBevel);
+        jButtonAbrirPista3.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonCerrarPista3.setBorder(loweredSoftBevel);
+        jButtonCerrarPista3.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.cerrarPista(3, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonCerrarPista3ActionPerformed
 
     private void jButtonAbrirPista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista3ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonAbrirPista3.setBorder(raisedSoftBevel);
+        jButtonAbrirPista3.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonCerrarPista3.setBorder(loweredSoftBevel);
+        jButtonCerrarPista3.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.abrirPista(3, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonAbrirPista3ActionPerformed
 
     private void jButtonAbrirPista4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista4ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonCerrarPista4.setBorder(raisedSoftBevel);
+        jButtonCerrarPista4.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonAbrirPista4.setBorder(loweredSoftBevel);
+        jButtonAbrirPista4.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.abrirPista(4, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButtonAbrirPista4ActionPerformed
 
     private void jButtonCerrarPista4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista4ActionPerformed
         // TODO add your handling code here:
+        Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
+        jButtonAbrirPista4.setBorder(raisedSoftBevel);
+        jButtonAbrirPista4.setEnabled(true);
+        Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
+        jButtonCerrarPista4.setBorder(loweredSoftBevel);
+        jButtonCerrarPista4.setEnabled(false);
+        try {
+            // Conectar al registro RMI en el servidor
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+            
+            // Obtener la referencia remota del objeto del servidor
+            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+
+            // Usar los métodos remotos
+            servidor.cerrarPista(4, id);
+        } catch (Exception e) {
+            System.err.println("Error en el cliente RMI: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButtonCerrarPista4ActionPerformed
 
     private void jTextFieldTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTallerActionPerformed
