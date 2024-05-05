@@ -37,4 +37,8 @@ public class Aerovia extends ZonaAeropuerto{
         finally{ 
             control.release();}    
     }
+    
+    public List<Thread> getAviones(){
+        return aviones;
+    }
 }

@@ -2,6 +2,8 @@ package Codigo;
 
 import java.util.Random;
 import Interfaces.VentanaPrincipal;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 public class GestorAeropuerto {
     
     private final VentanaPrincipal ventana;
@@ -10,33 +12,6 @@ public class GestorAeropuerto {
     private Thread[] aviones = new Thread[80]; 
    
     public GestorAeropuerto(VentanaPrincipal ventanaPrincipal) throws InterruptedException {
-        //Log log = new Log();
-        //log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", "PRUEBA:Avión AC-1423 es creado");
-        
-        /*//Prueba funcionamiento autobuses
-        Log log = new Log();
-        for(int i=0;i<5;i++){
-            log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", " ");
-        }
-        log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", "******************************************");
-        log.writeLog("PRUEBA:Aeropuerto Madrid-Barajas", "**************PRUEBAS AUTOBUSES***********");
-        Aerovia mad_bar=new Aerovia();
-        Aerovia bar_mad=new Aerovia();
-        Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",mad_bar,bar_mad,log);
-        for (int i =0;i<100;i++){
-        Autobus bus = new Autobus("Bus-"+(i+1),60,madrid);
-        System.out.println("Bus-"+(i+1)+" creado.");
-        bus.start();
-        }*/
-        
-        /*
-        //Prueba funcionamiento aviones
-        Log log = new Log();
-        for(int i=0;i<30;i++){
-            log.writeLog("PRUEBA:Aeropuerto Aviones", " ");
-        }
-        log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
-        log.writeLog("PRUEBA:Aeropuerto ", "************** PRUEBAS AVIONES ***********");*/
         
         gestorEstado = new GestorEstadoPrograma();
         ventana = ventanaPrincipal;
@@ -52,20 +27,7 @@ public class GestorAeropuerto {
         Aerovia bar_mad=new Aerovia(ventana);
         Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana,gestorEstado);
         Aeropuerto barcelona =new Aeropuerto("Barcelona-El Prat",2,bar_mad,mad_bar,log,ventana,gestorEstado);
-        
-        /*friteLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
-                System.out.println("Avión-"+i+" creado.");
-                aviones[i].start();
-            }
-        }
-        or (int i =0;i<21;i++){
-            Avion avion = new Avion("Avion-"+i,60,madrid,madrid,barcelona);
-            log.writeLog("PRUEBA:Aeropuerto ", "Avión-"+i+" creado.");
-            System.out.println("Avión-"+i+" creado.");
-            avion.start();
-        }*/
-        
-        
+               
         for (int i =0;i<40;i++){
             if(i%2==0){
                 buses[i] = new Autobus("Bus-"+(i+1),60,madrid);
@@ -78,10 +40,6 @@ public class GestorAeropuerto {
                 buses[i].start();}
         }
         
-        /*Avion avion = new Avion("Avion-1",60,madrid,madrid,barcelona);
-        log.writeLog("PRUEBA:Aeropuerto ", "Avión-1 creado.");
-        System.out.println("Avión-1 creado.");
-        avion.start();*/
         
         for (int i =0;i<40;i++){
             if(i%2==0){
@@ -132,7 +90,8 @@ public class GestorAeropuerto {
 //            Thread.sleep(1000 + (int) (2000 * Math.random()));
 //        }
 //        
-        
+        // Iniciar el servidor RMI
+        iniciarServidorRMI(madrid,barcelona);
     }
     
     //Devuelve un id de avión (YY-XXXX) a partir de un int
@@ -151,6 +110,25 @@ public class GestorAeropuerto {
     private static String generarIdentificador(int numero,boolean bus) {
         return "B-" + String.format("%04d", numero); // Formato de 4 dígitos con ceros a la izquierda
     }
+    
+    // Método para iniciar el servidor RMI
+    private void iniciarServidorRMI(Aeropuerto madrid ,Aeropuerto barcelona) {
+        try {
+            // Iniciar el servidor RMI en el puerto 1099
+            Registry registry = LocateRegistry.createRegistry(1099);
+            
+            // Crear una instancia de la implementación de la interfaz remota
+            ServidorImp airportOperations = new ServidorImp(madrid,barcelona);
+            
+            // Registrar la instancia en el registro RMI
+            registry.rebind("AirportOperations", airportOperations);
+            
+            System.out.println("Servidor RMI iniciado...");
+        } catch (Exception e) {
+            System.err.println("Error en el servidor RMI: " + e.getMessage());
+        }
+    }
+    
     
     public void pausar(){
         gestorEstado.pausar();

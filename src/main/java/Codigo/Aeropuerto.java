@@ -2,6 +2,7 @@ package Codigo;
 
 import Interfaces.VentanaPrincipal;
 import static java.lang.Math.random;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
@@ -516,6 +517,7 @@ public class Aeropuerto {
                 break;
         }
     }
+    
     public void actualizarPista(int numeroPista, String text) {
         switch (numeroPista) {
             case 1:
@@ -533,88 +535,65 @@ public class Aeropuerto {
         }
     }
     
-    //Espera en el area de estacionamiento hasta que haya una gate libre 
-    //Cubrir el caso de que no haya el maximo para que la concurrencia no haga dar fallo
-    /*public void embarcar(Avion avion) throws InterruptedException {
-        //Buscar una gate disponible ,gate1-gate5 incluidas
-        PuertaEmbarque p;
-        p=obtenerPuertaEmbarque(true);
-        areaEstacionamiento.salirAreaEstacionamiento(avion);//Si no sirve , sacarlo dentro de puerta de embarque 
-        p.embarcar(avion);
-        if (personas>=avion.getCapacidadMaxima()){
-            personas=personas-avion.getCapacidadMaxima();//Proteger!!!
-            avion.subir(avion.getCapacidadMaxima());
-            Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
-        }else {
-            int pasajeros=0;
-            pasajeros=personas;
-            personas=personas-pasajeros;//Proteger!!!
-            avion.subir(pasajeros);
-            Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
-            int cont=0;
-            while (!(avion.getCapacidadMaxima()==avion.getPasajeros()) && cont<2){
-                int restante=avion.getCapacidadMaxima()-avion.getPasajeros();
-                Thread.sleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-                if(personas >= restante){ 
-                    personas=personas-restante;//Proteger!!!
-                    avion.subir(restante);
-                    Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
-                    cont=3;
-                }else{
-                    int pasajeros2=0;
-                    pasajeros2=personas;
-                    personas=personas-pasajeros2;//Proteger!!!
-                    avion.subir(pasajeros2);
-                    Thread.sleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
-                    cont+=1;
-                }
-            }
-        }
-        p.terminar_embarque(avion);
-        liberarPuertaEmbarque();
-        
-    }*/
-    
-    /*public Pista obtenerPistaDisponible() {
-        // Iterar sobre las pistas y verificar si alguna está disponible
-        // Si encuentra una pista disponible, la devuelve
-        // Si ninguna pista está disponible, devuelve null
-        if (!pista1.estaOcupada()) {
-            return pista1;
-        } else if (!pista2.estaOcupada()) {
-            return pista2;
-        } else if (!pista3.estaOcupada()) {
-            return pista3;
-        } else if (!pista4.estaOcupada()) {
-            return pista4;
-        } else {
-            return null;
-        }
-    }*/
-    /*private PuertaEmbarque obtenerPuertaDesmbarque() throws InterruptedException {
-        // Mirar si están ocupadas y devolver una 
-        puertas2.acquire();
+    public int getPasajeros(){
+        return personas;
+    }
 
-        if (!gate1.estaOcupado()) {
-            return gate1;
-        } else if (!gate2.estaOcupado()) {
-            return gate2;
-        } else if (!gate3.estaOcupado()) {
-            return gate3;
-        } else if (!gate4.estaOcupado()) {
-            return gate4;
-        } else if (!gate5.estaOcupado()) {
-            return gate5;
-        } else {
-            return null; // Si todas las puertas están ocupadas, devolvemos null
+    public int numAvionesHangar(){
+        return hangar.getCapacidadActual();
+    }
+    
+    public int numAvionesTaller(){
+        return taller.getCapacidadActual();
+    }
+    
+    public int numAvionesAEstacionamiento(){
+        return areaEstacionamiento.getCapacidadActual();
+    } 
+    
+    public int numAvionesAreaRodaje(){
+        return areaRodaje.getCapacidadActual();
+    } 
+    
+    public List<Thread> avionesAerovia1(){
+        return entrada.getAviones();
+    }
+    
+    public List<Thread> avionesAerovia2(){
+        return salida.getAviones();
+    }
+    
+    public void cerrarPista(int numeroPista) {
+        switch (numeroPista) {
+            case 1:
+                pista1.setEstado(false);
+                break;
+            case 2:
+                pista2.setEstado(false);
+                break;
+            case 3:
+                pista3.setEstado(false);
+                break;
+            case 4:
+                pista4.setEstado(false);
+                break;
         }
-    }*/
-
+    }
     
-    /*//Suelta la puerta de embarque
-    public void liberarPuertaDesmbarque(){
-        puertas2.release();
-    }*/
-    
-
+    public void abrirPista(int numeroPista) {
+        switch (numeroPista) {
+            case 1:
+                pista1.setEstado(true);
+                break;
+            case 2:
+                pista2.setEstado(true);
+                break;
+            case 3:
+                pista3.setEstado(true);
+                break;
+            case 4:
+                pista4.setEstado(true);
+                break;
+        }
+    }
 }
