@@ -210,7 +210,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void reanudar(){
         gestorAeropuerto.reanudar();
     }
-
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

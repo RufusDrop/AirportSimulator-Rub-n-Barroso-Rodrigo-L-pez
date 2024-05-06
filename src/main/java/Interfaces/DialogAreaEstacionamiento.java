@@ -15,8 +15,6 @@ public class DialogAreaEstacionamiento extends javax.swing.JDialog {
     public void actualizarListaAreaEstacionamiento(DefaultListModel model){
         jListAreaEstacionamiento.setModel(model);
     }
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +68,7 @@ public class DialogAreaEstacionamiento extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jListAreaEstacionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAreaEstacionamientoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jListAreaEstacionamientoMouseClicked

@@ -18,13 +18,7 @@ public class GestorAeropuerto {
         gestorEstado = new GestorEstadoPrograma();
         ventana = ventanaPrincipal;
         Log log = new Log();
-        for(int i=0;i<30;i++){
-            log.writeLog("PRUEBA:Aeropuerto ", " ");
-        }
-        log.writeLog("PRUEBA:Aeropuerto ", "******************************************");
-            log.writeLog("PRUEBA:Aeropuerto ", "*********** PRUEBAS GENERALES ***********");
-        
-        
+
         Aerovia mad_bar=new Aerovia(ventana);
         Aerovia bar_mad=new Aerovia(ventana);
         Aeropuerto madrid =new Aeropuerto("Madrid-Barajas",1,mad_bar,bar_mad,log,ventana,gestorEstado);
@@ -41,6 +35,7 @@ public class GestorAeropuerto {
 
                 buses[i] = new Autobus(identificador, 50, aeropuerto);
                 buses[i].start();
+                log.writeLog("Aeropuerto "+ aeropuerto.getNombre(),"Al bus "+ identificador +" es creado");
                 try {
                     Thread.sleep((long) ((0.5 + Math.random() * 0.5) * 1000));
                 } catch (InterruptedException ex) {
@@ -59,6 +54,7 @@ public class GestorAeropuerto {
 
                 aviones[i] = new Avion(identificador, capacidad, aeropuerto,madrid,barcelona);
                 aviones[i].start();
+                log.writeLog("Aeropuerto "+ aeropuerto.getNombre(),"El avion "+ identificador +" es creado");
                 try {
                     Thread.sleep(1000 + (int) (2000 * Math.random()));
                 } catch (InterruptedException ex) {

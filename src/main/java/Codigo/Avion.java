@@ -28,6 +28,7 @@ public class Avion extends Thread{
     
     public void run() {
         //si es false actua como spawn
+        
         aeropuertoActual.accesoHangar(this);
         while (true) {
             try {

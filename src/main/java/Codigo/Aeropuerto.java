@@ -72,27 +72,27 @@ public class Aeropuerto {
             gestorEstado.verificarEstado();
             /// Llegada a la parada del centro de la ciudad, tiempo aleatorio entre 2 y 5 segundos
             safeSleep(2000 + (int) (3000 * Math.random())); // Tiempo aleatorio entre 2 y 5 segundos
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" a la parada del centro de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" a la parada del centro de "+this.nombre);
             
             gestorEstado.verificarEstado();
             // Subida de pasajeros en la ciudad, número aleatorio entre 0 y 50 pasajeros
             int pasajerosSubidos = (int) (51 * Math.random());
             bus.agregarPasajeros(pasajerosSubidos);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" recoge "+pasajerosSubidos+" pasajeros ");
+            log.writeLog("Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" recoge "+pasajerosSubidos+" pasajeros ");
             
             gestorEstado.verificarEstado();
             // Viaje hacia el aeropuerto, tiempo aleatorio entre 5 y 10 segundos
             safeSleep(5000 + (int) (6000 * Math.random())); // Tiempo aleatorio entre 5 y 10 segundos
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al aeropuerto  de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al aeropuerto  de "+this.nombre);
             
             gestorEstado.verificarEstado();
             // Llegada a la parada del aeropuerto, tiempo aleatorio entre 2 y 5 segundos
             bus.quitarPasajeros(pasajerosSubidos);
             control.safeAcquire();
             personas=personas+pasajerosSubidos;
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" deja "+pasajerosSubidos+" pasajeros en el aeropuerto de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" deja "+pasajerosSubidos+" pasajeros en el aeropuerto de "+this.nombre);
             ventana.actualizarTransfersAeropuerto(bus.getID()+"("+pasajerosSubidos+")",id);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
             ventana.actualizarPasajeros(personas,id);
             control.release();
         } catch (InterruptedException e) {
@@ -105,7 +105,7 @@ public class Aeropuerto {
             gestorEstado.verificarEstado();
             // Espera a que suban nuevos pasajeros durante un tiempo aleatorio entre 2 y 5 segundos
             safeSleep(2000 + (int) (3000 * Math.random())); // Tiempo aleatorio entre 2 y 5 segundos
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al aeropuerto de  "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al aeropuerto de  "+this.nombre);
             
             gestorEstado.verificarEstado();
             // Se montan en el autobús un número aleatorio entre 0 y 50 pasajeros
@@ -113,20 +113,20 @@ public class Aeropuerto {
             bus.agregarPasajeros(Math.min(pasajerosMontados,personas));
             control.safeAcquire();
             personas =personas- Math.min(pasajerosMontados,personas);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" retira "+Math.min(pasajerosMontados,personas)+" pasajeros del aeropuerto de "+this.nombre);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Autobus "+ bus.getID() +" retira "+Math.min(pasajerosMontados,personas)+" pasajeros del aeropuerto de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
             ventana.actualizarPasajeros(personas,id);
             control.release();
             
             gestorEstado.verificarEstado();
             // El autobús inicia su marcha en dirección al centro de la ciudad, tiempo aleatorio entre 5 y 10 segundos
             safeSleep(5000 + (int) (5000 * Math.random())); // Tiempo aleatorio entre 5 y 10 segundos
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al centro de  "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre, "Llegada del autobus "+ bus.getID() +" al centro de  "+this.nombre);
             
             gestorEstado.verificarEstado();
             // Llegada a la parada del centro de la ciudad, donde bajarán los pasajeros
             bus.quitarPasajeros(pasajerosMontados);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Se bajan "+pasajerosMontados +" pasajeros del autobus "+ bus.getID() );
+            log.writeLog("Aeropuerto "+ this.nombre, "Se bajan "+pasajerosMontados +" pasajeros del autobus "+ bus.getID() );
             ventana.actualizarTransfersCiudad(bus.getID()+"("+pasajerosMontados+")",id);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -138,7 +138,7 @@ public class Aeropuerto {
         try{
         gestorEstado.verificarEstado();
         hangar.accederHangar(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar  al hangar ");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar  al hangar ");
         ventana.añadirElemListaHangar(avion.getID(),id);
         }catch(InterruptedException e){
             e.printStackTrace();
@@ -150,15 +150,15 @@ public class Aeropuerto {
         if (avion.getUbicacion()){
             //El avion viene del taller
             areaEstacionamiento.accederAreaEstacionamiento(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
             ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
         }else{
             //El avion se encuentra en el hangar
             hangar.salirHangar(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Hangar");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Hangar");
             ventana.eliminarElemListaHangar(avion.getID(),id);
             areaEstacionamiento.accederAreaEstacionamiento(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
             ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
         }
     }
@@ -169,21 +169,21 @@ public class Aeropuerto {
         PuertaEmbarque p;
         p = obtenerPuertaEmbarque(true);//Posible error si retorna null
         areaEstacionamiento.salirAreaEstacionamiento(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
         ventana.eliminarElemListaAreaEstacionamiento(avion.getID(),id);
         
         p.embarcar(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está empezando a embarcar en la Puerta de Embarque "+p.getNumGate());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está empezando a embarcar en la Puerta de Embarque "+p.getNumGate());
         //Logica para actualizar los gates en la interfaz
         String text = "Embarque: "+avion.getID();
         actualizarGate(p.getNumGate(),text);
         int pasajerosEmbarcados = Math.min(avion.getCapacidadMaxima(), personas);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de embarcar "+pasajerosEmbarcados+" pasajeros");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de embarcar "+pasajerosEmbarcados+" pasajeros");
         control.safeAcquire();
         personas -= pasajerosEmbarcados;
         control.release();
         avion.subir(pasajerosEmbarcados);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
+        log.writeLog("Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
         ventana.actualizarPasajeros(personas,id);
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
@@ -200,8 +200,8 @@ public class Aeropuerto {
             ventana.actualizarPasajeros(personas,id);
             control.release();
             avion.subir(pasajeros);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"Al avión "+ avion.getID() +" se acaban de subir "+pasajeros+" pasajeros más");
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
+            log.writeLog("Aeropuerto "+ this.nombre,"Al avión "+ avion.getID() +" se acaban de subir "+pasajeros+" pasajeros más");
+            log.writeLog("Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
             
             gestorEstado.verificarEstado();
             safeSleep(1000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 1 y 3 segundos
@@ -210,7 +210,7 @@ public class Aeropuerto {
         }
     
         p.terminar_embarque(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" abandona la Puerta de Embarque "+p.getNumGate());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" abandona la Puerta de Embarque "+p.getNumGate());
         liberarPuertaEmbarque(true,p);
         //Logica para vaciar la puerta de embarque
         text = "";
@@ -221,7 +221,7 @@ public class Aeropuerto {
     public void despegar(Avion avion) throws InterruptedException {
         gestorEstado.verificarEstado();
         areaRodaje.accederAreaRodaje(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
         ventana.añadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
         Pista p;
@@ -236,9 +236,9 @@ public class Aeropuerto {
         } while (p == null);
         
         areaRodaje.salirAreaRodaje(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Rodaje");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Rodaje");
         ventana.eliminarElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+p.getNumPista());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+p.getNumPista());
         //Logica para actualizar la pista
         String text = "Despegue: "+avion.getID()+"("+avion.getPasajeros()+")";
         actualizarPista(p.getNumPista(),text);
@@ -248,14 +248,14 @@ public class Aeropuerto {
         //Despegue
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+p.getNumPista());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+p.getNumPista());
         //Logica para actualizar la pista
         text = "";
         actualizarPista(p.getNumPista(),text);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de despegar del aeropuerto de "+this.nombre);
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de despegar del aeropuerto de "+this.nombre);
         liberarPista(p);
         salida.accederAerovia(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Aerovía");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Aerovía");
         // Logica para actualizar las aerovias en la interfaz
         if(id == 1){
             ventana.añadirElemListaAeroviaMadridBarcelona(avion.getID()+"("+avion.getPasajeros()+")");
@@ -277,7 +277,7 @@ public class Aeropuerto {
             Pista pistaDisponible = obtenerPista();
             if (pistaDisponible != null) {
                 entrada.salirAerovia(avion);
-                log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir de la Aerovía ");
+                log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir de la Aerovía ");
                 // Logica para actualizar las aerovias en la interfaz
                 if(id == 2){
                     ventana.eliminarElemListaAeroviaMadridBarcelona(avion.getID()+"("+avion.getPasajeros()+")");
@@ -288,8 +288,8 @@ public class Aeropuerto {
                 // aterrizaje
                 gestorEstado.verificarEstado();
                 safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-                log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de aterrizar en el aeropuerto de "+this.nombre);
-                log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+pistaDisponible.getNumPista());
+                log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de aterrizar en el aeropuerto de "+this.nombre);
+                log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+pistaDisponible.getNumPista());
                 //Logica para actualizar la pista
                 String text = "Aterrizaje: "+avion.getID()+"("+avion.getPasajeros()+")";
                 actualizarPista(pistaDisponible.getNumPista(),text);
@@ -297,7 +297,7 @@ public class Aeropuerto {
                 gestorEstado.verificarEstado();
                 safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
                 
-                log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+pistaDisponible.getNumPista());
+                log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+pistaDisponible.getNumPista());
                 //Logica para actualizar la pista
                 text = "";
                 actualizarPista(pistaDisponible.getNumPista(),text);
@@ -314,7 +314,7 @@ public class Aeropuerto {
     public void desembarcar(Avion avion) throws InterruptedException {
         gestorEstado.verificarEstado();
         areaRodaje.accederAreaRodaje(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
         ventana.añadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
         gestorEstado.verificarEstado();
         safeSleep(3000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 3 y 5 segundos
@@ -322,32 +322,32 @@ public class Aeropuerto {
         PuertaEmbarque p;
         p=obtenerPuertaEmbarque(false);
         areaRodaje.salirAreaRodaje(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Rodaje");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Rodaje");
         ventana.eliminarElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
         p.desembarcar(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Puerta de Embarque "+p.getNumGate());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Puerta de Embarque "+p.getNumGate());
         //Logica para actualizar los gates en la interfaz
         String text = "Desembarque: "+avion.getID();
         actualizarGate(p.getNumGate(),text);
         //Se bajan los pasajeros
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de bajar a todos los pasajeros");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de bajar a todos los pasajeros");
         control.safeAcquire();
         personas += avion.getPasajeros();
         control.release();
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
+        log.writeLog("Aeropuerto "+ this.nombre, "Hay "+personas+" personas en el aeropuerto de "+this.nombre);
         ventana.actualizarPasajeros(personas, id);
         
         avion.bajar();
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
         p.terminar_desembarque(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Puerta de Embarque "+p.getNumGate());
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Puerta de Embarque "+p.getNumGate());
         //Logica para actualizar los gates en la interfaz
         text = "";
         actualizarGate(p.getNumGate(),text);
         liberarPuertaEmbarque(false,p);
         areaEstacionamiento.accederAreaEstacionamiento(avion);
-        log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Área de Estacionamiento");
+        log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Área de Estacionamiento");
         ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
@@ -358,42 +358,42 @@ public class Aeropuerto {
         gestorEstado.verificarEstado();
         if (b){
             areaEstacionamiento.salirAreaEstacionamiento(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
             ventana.eliminarElemListaAreaEstacionamiento(avion.getID(),id);
             //Inspeccion larga 
             taller.accederTaller(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
             ventana.añadirElemListaTaller(avion.getID(),id);
             //Tiempo acceso taller
             gestorEstado.verificarEstado();
             safeSleep(1000); // Tiempo de un segundo
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está pasando la inspección");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está pasando la inspección");
             //Tiempo revisión
             gestorEstado.verificarEstado();
             safeSleep(5000 + (int) (5000 * Math.random())); // Tiempo aleatorio entre 5 y 10 segundos
             taller.salirTaller(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Taller");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Taller");
             ventana.eliminarElemListaTaller(avion.getID(),id);
             //Tiempo salida taller
             gestorEstado.verificarEstado();
             safeSleep(1000); // Tiempo de un segundo
         }else{
             areaEstacionamiento.salirAreaEstacionamiento(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Estacionamiento");
             ventana.eliminarElemListaAreaEstacionamiento(avion.getID(),id);
             //Inspeccion corta 
             taller.accederTaller(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
             ventana.añadirElemListaTaller(avion.getID(),id);
             //Tiempo acceso taller
             gestorEstado.verificarEstado();
             safeSleep(1000); // Tiempo de un segundo
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está pasando la revisión");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" está pasando la revisión");
             //Tiempo revisión
             gestorEstado.verificarEstado();
             safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
             taller.salirTaller(avion);
-            log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Taller");
+            log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Taller");
             ventana.eliminarElemListaTaller(avion.getID(),id);
             //Tiempo salida taller
             gestorEstado.verificarEstado();
