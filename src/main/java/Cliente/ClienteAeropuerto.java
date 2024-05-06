@@ -2,7 +2,6 @@ package Cliente;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
-import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 

@@ -1,13 +1,12 @@
 package Codigo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Hangar extends ZonaAeropuerto {
-    private List<Thread> aviones;
+    private List<Avion> aviones;
     private Lock control = new ReentrantLock();
             
     public Hangar(){
