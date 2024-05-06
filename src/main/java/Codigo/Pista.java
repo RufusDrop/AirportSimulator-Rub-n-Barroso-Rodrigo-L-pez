@@ -65,29 +65,38 @@ public class Pista extends ZonaAeropuerto{
         return estado;
     }
     
-    public void setEstado(boolean estado){
-        protector.lock();
-        try{
-        this.estado=estado;
-        }finally{protector.unlock();}
+    public void setEstado(boolean nuevoEstado) {
+    protector.lock();
+    try {
+        boolean estadoAnterior = this.estado;
+        this.estado = nuevoEstado;
+        if (!estadoAnterior && nuevoEstado) {
+            // Si la pista estaba cerrada y ahora se abre, notificar a todos
+            control.lock();
+            try {
+                lleno.signalAll(); 
+            } finally {
+                control.unlock();
+            }
+        }
+    } finally {
+        protector.unlock();
     }
+}
     
-    //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
-    public boolean estaOcupada() {
-        return ocupado;
-    }
     
+ 
     public void setOcupado(boolean ocupado) {
         control.lock();
         try{
         this.ocupado=ocupado;
         }finally{control.unlock();}
     }
-    
-        //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
-    public boolean estaAbierta() {
-        return estado;
+    //Verifica el estado de la Puerta de embarque , devuelve true si esta ocupado
+    public boolean getOcupado() {
+        return ocupado;
     }
+    
     
     public int getNumPista() {
         return numPista;

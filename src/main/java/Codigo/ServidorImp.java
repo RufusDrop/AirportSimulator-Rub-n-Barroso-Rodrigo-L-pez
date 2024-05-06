@@ -2,7 +2,6 @@ package Codigo;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 import javax.swing.DefaultListModel;
 
 public class ServidorImp extends UnicastRemoteObject implements Servidor{
@@ -108,21 +107,11 @@ public class ServidorImp extends UnicastRemoteObject implements Servidor{
     }
 
     @Override
-    public DefaultListModel avionesAerovia (int idAeropuerto)throws RemoteException{
-        if (idAeropuerto==1){
-            return avionesAerovia1();
-        }
-        else if (idAeropuerto==2){
-            return avionesAerovia2();
-        }else {return null;}
-        
-    }
-    
-    public DefaultListModel avionesAerovia1(){
+    public DefaultListModel avionesAerovia1()throws RemoteException{
         return madrid.avionesAerovia1();
     }
     
-    public DefaultListModel  avionesAerovia2(){
+    public DefaultListModel  avionesAerovia2()throws RemoteException{
         return madrid.avionesAerovia2();
     }
     

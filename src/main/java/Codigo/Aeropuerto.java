@@ -8,6 +8,8 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 public class Aeropuerto {
@@ -233,7 +235,7 @@ public class Aeropuerto {
         
         // Bucle para intentar obtener una pista disponible
         do {
-            p = obtenerPista();
+            p = obtenerPista(false);
             if (p == null) {
                 gestorEstado.verificarEstado();
                 safeSleep(1000); // Esperar 1 segundo antes de volver a intentar obtener una pista
@@ -260,7 +262,7 @@ public class Aeropuerto {
         text = "";
         actualizarPista(p.getNumPista(),text);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de despegar del aeropuerto de "+this.nombre);
-        liberarPista();
+        liberarPista(p);
         salida.accederAerovia(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Aerovía");
         // Logica para actualizar las aerovias en la interfaz
@@ -281,7 +283,7 @@ public class Aeropuerto {
     public void aterrizar(Avion avion) throws InterruptedException {
         gestorEstado.verificarEstado();
         while (true) {
-            Pista pistaDisponible = obtenerPista();
+            Pista pistaDisponible = obtenerPista(true);
             if (pistaDisponible != null) {
                 entrada.salirAerovia(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir de la Aerovía ");
@@ -310,7 +312,7 @@ public class Aeropuerto {
                 //Logica para actualizar la pista
                 text = "";
                 actualizarPista(pistaDisponible.getNumPista(),text);
-                liberarPista();
+                liberarPista(pistaDisponible);
                 break; // Avión ha aterrizado, salir del bucle
             } else {
                 // No hay pistas disponibles, dar un rodeo al aeropuerto
@@ -491,20 +493,21 @@ public class Aeropuerto {
         
     }
     
-
-    private Pista obtenerPista() throws InterruptedException {
+    private Pista obtenerPista(boolean aterrizaje) throws InterruptedException {
+        if(pistas.availablePermits()==0 && aterrizaje){
+            return null;
+        }
         pistas.safeAcquire();
-        
-        if (!pista1.estaOcupada() && pista1.estaAbierta()) {
+        if (!pista1.getOcupado() && pista1.getEstado()) {
             pista1.setOcupado(true);
             return pista1;
-        } else if (!pista2.estaOcupada() && pista2.estaAbierta()) {
+        } else if (!pista2.getOcupado() && pista2.getEstado()) {
             pista2.setOcupado(true);
             return pista2;
-        } else if (!pista3.estaOcupada() && pista3.estaAbierta()) {
+        } else if (!pista3.getOcupado() && pista3.getEstado()) {
             pista3.setOcupado(true);
             return pista3;
-        } else if (!pista4.estaOcupada() && pista4.estaAbierta()) {
+        } else if (!pista4.getOcupado() && pista4.getEstado()) {
             pista4.setOcupado(true);
             return pista4;
         } else {
@@ -514,10 +517,67 @@ public class Aeropuerto {
     }
     
     //Suelta la puerta de embarque
-    public void liberarPista(){
-        pistas.release();
+    public void liberarPista(Pista pista){
+        if(pista.getEstado()){
+        pistas.release();    
+        }
     }
     
+    
+    
+    public DefaultListModel avionesAerovia1(){
+        List<Avion> aviones = entrada.getAviones();
+        DefaultListModel model = new DefaultListModel();
+        for (Avion avion : aviones) {
+        model.addElement(avion.getID() + "(" + avion.getPasajeros() + ")");
+        }
+        return model;
+    }
+    
+    public DefaultListModel avionesAerovia2(){
+        List<Avion> aviones = salida.getAviones();
+        DefaultListModel model = new DefaultListModel();
+        for (Avion avion : aviones) {
+        model.addElement(avion.getID() + "(" + avion.getPasajeros() + ")");
+        }
+        return model;
+    }
+    
+    public void cerrarPista(int numeroPista) {
+        Pista pista = getPista(numeroPista);
+        if (pista != null && pista.getEstado()) { // Solo intenta cerrar si está abierta
+            pista.setEstado(false);
+                try {
+                    pistas.safeAcquire(); // Solo adquirir si la pista estaba abierta.
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Aeropuerto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            System.out.println("Pista " + numeroPista + " cerrada. Estado actual: " + pista.getEstado());
+        }
+    }
+    
+    public void abrirPista(int numeroPista) {
+        Pista pista = getPista(numeroPista);
+        if (pista != null && !pista.getEstado()) { // Solo intenta abrir si está cerrada
+            pista.setEstado(true);
+            pistas.release(); // Incrementar el semáforo solo si la pista estaba cerrada.
+            System.out.println("Pista " + numeroPista + " abierta. Estado actual: " + pista.getEstado());
+        }
+    }
+    private Pista getPista(int numeroPista) {
+        switch (numeroPista) {
+            case 1:
+                return pista1;
+            case 2:
+                return pista2;
+            case 3:
+                return pista3;
+            case 4:
+                return pista4;
+            default:
+                return null;
+        }
+    } 
     public String getNombre(){
         return nombre;
     }
@@ -581,58 +641,4 @@ public class Aeropuerto {
     public int numAvionesAreaRodaje(){
         return areaRodaje.getCapacidadActual();
     } 
-    
-    public DefaultListModel avionesAerovia1(){
-        List<Avion> aviones = entrada.getAviones();
-        DefaultListModel model = new DefaultListModel();
-        for (Avion avion : aviones) {
-        model.addElement(avion.getId() + "(" + avion.getPasajeros() + ")");
-        }
-        return model;
-    }
-    
-    public DefaultListModel avionesAerovia2(){
-        List<Avion> aviones = salida.getAviones();
-        DefaultListModel model = new DefaultListModel();
-        for (Avion avion : aviones) {
-        model.addElement(avion.getId() + "(" + avion.getPasajeros() + ")");
-        }
-        return model;
-    }
-    
-    public void cerrarPista(int numeroPista) {
-        switch (numeroPista) {
-            case 1:
-                pista1.setEstado(false);
-                System.out.println("El estado es :"+pista1.getEstado());
-                break;
-            case 2:
-                pista2.setEstado(false);
-                break;
-            case 3:
-                pista3.setEstado(false);
-                break;
-            case 4:
-                pista4.setEstado(false);
-                break;
-        }
-    }
-    
-    public void abrirPista(int numeroPista) {
-        switch (numeroPista) {
-            case 1:
-                pista1.setEstado(true);
-                System.out.println("El estado es :"+pista1.getEstado());
-                break;
-            case 2:
-                pista2.setEstado(true);
-                break;
-            case 3:
-                pista3.setEstado(true);
-                break;
-            case 4:
-                pista4.setEstado(true);
-                break;
-        }
-    }
 }

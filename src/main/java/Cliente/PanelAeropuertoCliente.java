@@ -1,9 +1,12 @@
 package Cliente;
 
 import Codigo.Servidor;
-import Codigo.ServidorImp;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 
@@ -11,6 +14,7 @@ import javax.swing.border.SoftBevelBorder;
 public class PanelAeropuertoCliente extends javax.swing.JPanel {
 
     private int id;
+    private Servidor servidor;
     /**
      * Creates new form PanelAeropuertoCliente
      */
@@ -22,91 +26,34 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         this.id = id;
     }
     public void actualizarInterfaz(){
-        actualizarNumPasajeros();
-        actualizarNumAvionesHangar();
-        actualizarNumAvionesTaller();
-        actualizarNumAvionesAreaEstacionamiento();
-        actualizarNumAvionesAreaRodaje();
-        
-    }
-    //Metodos de actualizacion de la interfaz
-    
-    
-    private void actualizarNumPasajeros() {
+
         try {
                 // Conectar al registro RMI en el servidor
                 Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
                 // Obtener la referencia remota del objeto del servidor
-                Servidor servidor = (Servidor) registry.lookup("Servidor");
+                servidor = (Servidor) registry.lookup("Servidor");
 
                 // Usar los métodos remotos
-                jLabelNPasajeros.setText(Integer.toString(servidor.numPasajeros(id)));
+                SwingUtilities.invokeLater(() -> {
+                    try {
+                        jLabelNPasajeros.setText(Integer.toString(servidor.numPasajeros(id)));
+                        jTextFieldHangar.setText(Integer.toString(servidor.numAvionesHangar(id)));
+                        jTextFieldTaller.setText(Integer.toString(servidor.numAvionesTaller(id)));
+                        jTextFieldAreaEstacionamiento.setText(Integer.toString(servidor.numAvionesAEstacionamiento(id)));
+                        jTextFieldAreaRodaje.setText(Integer.toString(servidor.numAvionesAreaRodaje(id)));
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(PanelAeropuertoCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+
+                
             } catch (Exception e) {
                 System.err.println("Error en el cliente RMI: " + e.getMessage());
         }
     }
-
-    private void actualizarNumAvionesHangar(){
-        try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-
-            // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
-
-            // Usar los métodos remotos para actualizar el número de aviones en el hangar
-            jTextFieldHangar.setText(Integer.toString(servidor.numAvionesHangar(id)));
-        } catch (Exception e) {
-            System.err.println("Error al actualizar número de aviones en el hangar: " + e.getMessage());
-        }
-    }
     
-    private void actualizarNumAvionesTaller() {
-        try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-
-            // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
-
-            // Usar los métodos remotos para actualizar el número de aviones en taller
-            jTextFieldTaller.setText(Integer.toString(servidor.numAvionesTaller(id)));
-        } catch (Exception e) {
-            System.err.println("Error al actualizar número de aviones en taller: " + e.getMessage());
-        }
-    }
-
     
-    private void actualizarNumAvionesAreaEstacionamiento() {
-        try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-
-            // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
-
-            // Usar los métodos remotos para actualizar el número de aviones en el área de estacionamiento
-            jTextFieldAreaEstacionamiento.setText(Integer.toString(servidor.numAvionesAEstacionamiento(id)));
-        } catch (Exception e) {
-            System.err.println("Error al actualizar número de aviones en área de estacionamiento: " + e.getMessage());
-        }
-    }
-    
-    private void actualizarNumAvionesAreaRodaje() {
-        try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-
-            // Obtener la referencia remota del objeto del servidor
-            ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
-
-            // Usar los métodos remotos para actualizar el número de aviones en el área de rodaje
-            jTextFieldAreaRodaje.setText(Integer.toString(servidor.numAvionesAreaRodaje(id)));
-        } catch (Exception e) {
-            System.err.println("Error al actualizar número de aviones en área de rodaje: " + e.getMessage());
-        }
-    }
 
 
 
@@ -412,11 +359,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonCerrarPista1.setBorder(loweredSoftBevel);
         jButtonCerrarPista1.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+          
 
             // Usar los métodos remotos
             servidor.cerrarPista(1, id);
@@ -437,11 +380,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonAbrirPista1.setBorder(loweredSoftBevel);
         jButtonAbrirPista1.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+         
 
             // Usar los métodos remotos
             servidor.abrirPista(1, id);
@@ -460,11 +399,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonAbrirPista2.setBorder(loweredSoftBevel);
         jButtonAbrirPista2.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+    
 
             // Usar los métodos remotos
             servidor.abrirPista(2, id);
@@ -483,11 +418,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonCerrarPista2.setBorder(loweredSoftBevel);
         jButtonCerrarPista2.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+     
 
             // Usar los métodos remotos
             servidor.cerrarPista(2, id);
@@ -507,11 +438,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonCerrarPista3.setBorder(loweredSoftBevel);
         jButtonCerrarPista3.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+    
 
             // Usar los métodos remotos
             servidor.cerrarPista(3, id);
@@ -524,17 +451,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
     private void jButtonAbrirPista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista3ActionPerformed
         // TODO add your handling code here:
         Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
-        jButtonAbrirPista3.setBorder(raisedSoftBevel);
-        jButtonAbrirPista3.setEnabled(true);
+        jButtonCerrarPista3.setBorder(raisedSoftBevel);
+        jButtonCerrarPista3.setEnabled(true);
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
-        jButtonCerrarPista3.setBorder(loweredSoftBevel);
-        jButtonCerrarPista3.setEnabled(false);
+        jButtonAbrirPista3.setBorder(loweredSoftBevel);
+        jButtonAbrirPista3.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+        
 
             // Usar los métodos remotos
             servidor.abrirPista(3, id);
@@ -553,12 +476,6 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonAbrirPista4.setBorder(loweredSoftBevel);
         jButtonAbrirPista4.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
-
             // Usar los métodos remotos
             servidor.abrirPista(4, id);
         } catch (Exception e) {
@@ -576,11 +493,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         jButtonCerrarPista4.setBorder(loweredSoftBevel);
         jButtonCerrarPista4.setEnabled(false);
         try {
-            // Conectar al registro RMI en el servidor
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            
-            // Obtener la referencia remota del objeto del servidor
-            Servidor servidor = (Servidor) registry.lookup("Servidor");
+     
 
             // Usar los métodos remotos
             servidor.cerrarPista(4, id);

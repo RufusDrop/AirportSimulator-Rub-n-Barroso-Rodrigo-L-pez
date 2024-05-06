@@ -10,8 +10,8 @@ public class GestorAeropuerto {
     
     private final VentanaPrincipal ventana;
     private final GestorEstadoPrograma gestorEstado;
-    private Thread[] buses = new Thread[40]; 
-    private Thread[] aviones = new Thread[80]; 
+    private Thread[] buses = new Thread[4000]; 
+    private Thread[] aviones = new Thread[8000]; 
    
     public GestorAeropuerto(VentanaPrincipal ventanaPrincipal) throws InterruptedException {
         

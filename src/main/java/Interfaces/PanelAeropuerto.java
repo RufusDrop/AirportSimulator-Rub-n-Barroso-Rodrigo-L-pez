@@ -28,7 +28,9 @@ public class PanelAeropuerto extends javax.swing.JPanel {
 
     }
     public void actualizarNombre(String text){
+        SwingUtilities.invokeLater(() -> {
         jLabelNombreAeropuerto.setText(text);
+        });
     }
     //Metodos para actualizar la interfaz usando swing de forma segura
     public void actualizarPasajeros(int npasajeros) {

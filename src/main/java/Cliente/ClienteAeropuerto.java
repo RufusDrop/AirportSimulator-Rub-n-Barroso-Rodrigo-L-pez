@@ -2,29 +2,38 @@ package Cliente;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import javax.swing.SwingWorker;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 
 public class ClienteAeropuerto extends javax.swing.JFrame {
     
     private boolean conectado = false;
+    private long tasaRefresco = 200;
     
     public ClienteAeropuerto() {
         initComponents();
+        this.setLocationRelativeTo(null); //Esta linea se pone para que la ventana salga centrada.
         panelAeropuertoCliente1.setId(1);
         panelAeropuertoCliente2.setId(2);
-        recibirInfoServer();
-        
     }
-    private void recibirInfoServer(){
-        while(conectado){
+
+    private void recibirInfoServer() {
+    new Thread(() -> {
+        while (conectado) {
             panelAeropuertoCliente1.actualizarInterfaz();
             panelAeropuertoCliente2.actualizarInterfaz();
-            panelAerovias.setModelAeroviaMadridBarcelona();
-            panelAerovias.setModelAeroviaBarcelonaMadrid();
+            panelAerovias.actualizarAerovias();
+
+            try {
+                Thread.sleep(tasaRefresco); //Frecuencia de refresco de actualización
+            } catch (InterruptedException e) {
+                System.out.println("Error sleep recibirInfoServer");
+                Thread.currentThread().interrupt();  // Buena práctica para manejar la interrupción
+            }
         }
-    }
-    
+    }).start();  // No olvides iniciar el hilo
+}
     
     
     
@@ -154,6 +163,7 @@ public class ClienteAeropuerto extends javax.swing.JFrame {
         Border raisedSoftBevel = new SoftBevelBorder(SoftBevelBorder.RAISED);
         jButtonConexionServidor.setBorder(raisedSoftBevel);
         conectado = true;
+        recibirInfoServer();
         }
     }//GEN-LAST:event_jButtonConexionServidorActionPerformed
 

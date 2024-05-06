@@ -1,9 +1,14 @@
 package Interfaces;
 
+import Codigo.Servidor;
 import Codigo.ServidorImp;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.SwingUtilities;
 
 public class PanelAerovias extends javax.swing.JPanel {
     private DefaultListModel<String> aeroviaMadridBarcelonaModel;
@@ -55,34 +60,27 @@ public class PanelAerovias extends javax.swing.JPanel {
         }
         
     }
-    public void setModelAeroviaMadridBarcelona(){
+    public void actualizarAerovias(){
         try {
                 // Conectar al registro RMI en el servidor
                 Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
                 // Obtener la referencia remota del objeto del servidor
-                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
                 // Usar los métodos remotos
-                jListAeroviaMadridBarcelona.setModel(servidor.avionesAerovia1());
+                SwingUtilities.invokeLater(() -> {
+                    try {
+                        jListAeroviaBarcelonaMadrid.setModel(servidor.avionesAerovia1());
+                        jListAeroviaMadridBarcelona.setModel(servidor.avionesAerovia2());
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(PanelAerovias.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             } catch (Exception e) {
-                System.err.println("Error en el cliente RMI: " + e.getMessage());
+                System.err.println("Error en el cliente RMI al actualizar Aerovias: " + e.getMessage());
         }
         
-    }
-    public void setModelAeroviaBarcelonaMadrid(){
-        try {
-                // Conectar al registro RMI en el servidor
-                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-
-                // Obtener la referencia remota del objeto del servidor
-                ServidorImp servidor = (ServidorImp) registry.lookup("Servidor");
-
-                // Usar los métodos remotos
-                jListAeroviaBarcelonaMadrid.setModel(servidor.avionesAerovia2());
-            } catch (Exception e) {
-                System.err.println("Error en el cliente RMI: " + e.getMessage());
-        }
     }
     public DefaultListModel<String> getModelAeroviaMadridBarcelona(){
         return aeroviaMadridBarcelonaModel;
