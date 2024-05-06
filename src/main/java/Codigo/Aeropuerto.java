@@ -139,7 +139,7 @@ public class Aeropuerto {
         gestorEstado.verificarEstado();
         hangar.accederHangar(avion);
         log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar  al hangar ");
-        ventana.añadirElemListaHangar(avion.getID(),id);
+        ventana.annadirElemListaHangar(avion.getID(),id);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -151,7 +151,7 @@ public class Aeropuerto {
             //El avion viene del taller
             areaEstacionamiento.accederAreaEstacionamiento(avion);
             log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
-            ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
+            ventana.annadirElemListaAreaEstacionamiento(avion.getID(),id);
         }else{
             //El avion se encuentra en el hangar
             hangar.salirHangar(avion);
@@ -159,7 +159,7 @@ public class Aeropuerto {
             ventana.eliminarElemListaHangar(avion.getID(),id);
             areaEstacionamiento.accederAreaEstacionamiento(avion);
             log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Estacionamiento");
-            ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
+            ventana.annadirElemListaAreaEstacionamiento(avion.getID(),id);
         }
     }
     
@@ -222,7 +222,7 @@ public class Aeropuerto {
         gestorEstado.verificarEstado();
         areaRodaje.accederAreaRodaje(avion);
         log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
-        ventana.añadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
+        ventana.annadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
         Pista p;
         
@@ -258,9 +258,9 @@ public class Aeropuerto {
         log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder a la Aerovía");
         // Logica para actualizar las aerovias en la interfaz
         if(id == 1){
-            ventana.añadirElemListaAeroviaMadridBarcelona(avion.getID()+"("+avion.getPasajeros()+")");
+            ventana.annadirElemListaAeroviaMadridBarcelona(avion.getID()+"("+avion.getPasajeros()+")");
         }else if(id==2){
-            ventana.añadirElemListaAeroviaBarcelonaMadrid(avion.getID()+"("+avion.getPasajeros()+")");
+            ventana.annadirElemListaAeroviaBarcelonaMadrid(avion.getID()+"("+avion.getPasajeros()+")");
         }
         
         
@@ -315,7 +315,7 @@ public class Aeropuerto {
         gestorEstado.verificarEstado();
         areaRodaje.accederAreaRodaje(avion);
         log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar al Área de Rodaje");
-        ventana.añadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
+        ventana.annadirElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
         gestorEstado.verificarEstado();
         safeSleep(3000 + (int) (2000 * Math.random())); // Tiempo aleatorio entre 3 y 5 segundos
         
@@ -348,7 +348,7 @@ public class Aeropuerto {
         liberarPuertaEmbarque(false,p);
         areaEstacionamiento.accederAreaEstacionamiento(avion);
         log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Área de Estacionamiento");
-        ventana.añadirElemListaAreaEstacionamiento(avion.getID(),id);
+        ventana.annadirElemListaAreaEstacionamiento(avion.getID(),id);
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
     }
@@ -363,7 +363,7 @@ public class Aeropuerto {
             //Inspeccion larga 
             taller.accederTaller(avion);
             log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
-            ventana.añadirElemListaTaller(avion.getID(),id);
+            ventana.annadirElemListaTaller(avion.getID(),id);
             //Tiempo acceso taller
             gestorEstado.verificarEstado();
             safeSleep(1000); // Tiempo de un segundo
@@ -384,7 +384,7 @@ public class Aeropuerto {
             //Inspeccion corta 
             taller.accederTaller(avion);
             log.writeLog("Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de acceder al Taller");
-            ventana.añadirElemListaTaller(avion.getID(),id);
+            ventana.annadirElemListaTaller(avion.getID(),id);
             //Tiempo acceso taller
             gestorEstado.verificarEstado();
             safeSleep(1000); // Tiempo de un segundo
@@ -449,7 +449,7 @@ public class Aeropuerto {
                 if (timeLeft > 0) {
                     Thread.sleep(timeLeft);
                 }
-                break; // Si se completa el tiempo de sueño, salimos del bucle
+                break; // Si se completa el tiempo de suenno, salimos del bucle
             } catch (InterruptedException e) {
                 // Actualizamos el tiempo dormido y el tiempo restante.
                 sleptTime = System.currentTimeMillis() - startTime;

@@ -110,7 +110,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         });
     }
     
-    public void añadirElemListaHangar(String text) {
+    public void annadirElemListaHangar(String text) {
         SwingUtilities.invokeLater(() -> {
             DefaultListModel model = (DefaultListModel) jListHangar.getModel();
             model.addElement(text);
@@ -124,7 +124,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         });
     }
 
-    public void añadirElemListaAreaEstacionamiento(String text) {
+    public void annadirElemListaAreaEstacionamiento(String text) {
         SwingUtilities.invokeLater(() -> {
             DefaultListModel model = (DefaultListModel) jListAreaEstacionamiento.getModel();
             model.addElement(text);
@@ -138,7 +138,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         });
     }
 
-    public void añadirElemListaTaller(String text) {
+    public void annadirElemListaTaller(String text) {
         SwingUtilities.invokeLater(() -> {
             DefaultListModel model = (DefaultListModel) jListTaller.getModel();
             model.addElement(text);
@@ -152,7 +152,7 @@ public class PanelAeropuerto extends javax.swing.JPanel {
         });
     }
 
-    public void añadirElemListaAreaRodaje(String text) {
+    public void annadirElemListaAreaRodaje(String text) {
         SwingUtilities.invokeLater(() -> {
             DefaultListModel model = (DefaultListModel) jListAreaRodaje.getModel();
             model.addElement(text);

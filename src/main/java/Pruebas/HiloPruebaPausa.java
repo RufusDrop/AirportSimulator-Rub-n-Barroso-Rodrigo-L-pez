@@ -56,7 +56,7 @@ public class HiloPruebaPausa extends Thread {
                 // Actualizamos sleptTime para salir del bucle si ya hemos dormido lo suficiente.
                 sleptTime = System.currentTimeMillis() - startTime;
                 System.out.println("Dormido:"+sleptTime+" Restante:"+0);
-                break; // Si se completa el tiempo de sueño, salimos del bucle
+                break; // Si se completa el tiempo de suenno, salimos del bucle
             } catch (InterruptedException e) {
                 // Actualizamos el tiempo dormido y el tiempo restante.
                 sleptTime = System.currentTimeMillis() - startTime;

@@ -122,11 +122,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     
-    public void añadirElemListaHangar(String text, int numeroAeropuerto) {
+    public void annadirElemListaHangar(String text, int numeroAeropuerto) {
         if (numeroAeropuerto == 1) {
-            panelAeropuerto1.añadirElemListaHangar(text);
+            panelAeropuerto1.annadirElemListaHangar(text);
         } else if (numeroAeropuerto == 2) {
-            panelAeropuerto2.añadirElemListaHangar(text);
+            panelAeropuerto2.annadirElemListaHangar(text);
         }
     }
 
@@ -138,11 +138,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void añadirElemListaAreaEstacionamiento(String text, int numeroAeropuerto) {
+    public void annadirElemListaAreaEstacionamiento(String text, int numeroAeropuerto) {
         if (numeroAeropuerto == 1) {
-            panelAeropuerto1.añadirElemListaAreaEstacionamiento(text);
+            panelAeropuerto1.annadirElemListaAreaEstacionamiento(text);
         } else if (numeroAeropuerto == 2) {
-            panelAeropuerto2.añadirElemListaAreaEstacionamiento(text);
+            panelAeropuerto2.annadirElemListaAreaEstacionamiento(text);
         }
     }
 
@@ -154,11 +154,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void añadirElemListaTaller(String text, int numeroAeropuerto) {
+    public void annadirElemListaTaller(String text, int numeroAeropuerto) {
         if (numeroAeropuerto == 1) {
-            panelAeropuerto1.añadirElemListaTaller(text);
+            panelAeropuerto1.annadirElemListaTaller(text);
         } else if (numeroAeropuerto == 2) {
-            panelAeropuerto2.añadirElemListaTaller(text);
+            panelAeropuerto2.annadirElemListaTaller(text);
         }
     }
 
@@ -170,11 +170,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void añadirElemListaAreaRodaje(String text, int numeroAeropuerto) {
+    public void annadirElemListaAreaRodaje(String text, int numeroAeropuerto) {
         if (numeroAeropuerto == 1) {
-            panelAeropuerto1.añadirElemListaAreaRodaje(text);
+            panelAeropuerto1.annadirElemListaAreaRodaje(text);
         } else if (numeroAeropuerto == 2) {
-            panelAeropuerto2.añadirElemListaAreaRodaje(text);
+            panelAeropuerto2.annadirElemListaAreaRodaje(text);
         }
     }
 
@@ -186,14 +186,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void añadirElemListaAeroviaMadridBarcelona(String text){
-        panelAerovias.añadirElemListaAeroviaMadridBarcelona(text);
+    public void annadirElemListaAeroviaMadridBarcelona(String text){
+        panelAerovias.annadirElemListaAeroviaMadridBarcelona(text);
     }
     public void eliminarElemListaAeroviaMadridBarcelona(String text){
         panelAerovias.eliminarElemListaAeroviaMadridBarcelona(text);
     }
-    public void añadirElemListaAeroviaBarcelonaMadrid(String text){
-        panelAerovias.añadirElemListaAeroviaBarcelonaMadrid(text);
+    public void annadirElemListaAeroviaBarcelonaMadrid(String text){
+        panelAerovias.annadirElemListaAeroviaBarcelonaMadrid(text);
     }
     public void eliminarElemListaAeroviaBarcelonaMadrid(String text){
         panelAerovias.eliminarElemListaAeroviaBarcelonaMadrid(text);

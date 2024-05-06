@@ -23,7 +23,7 @@ public class PanelAerovias extends javax.swing.JPanel {
         jListAeroviaMadridBarcelona.setModel(aeroviaMadridBarcelonaModel);
         jListAeroviaBarcelonaMadrid.setModel(aeroviaBarcelonaMadridModel);
     }
-    public void añadirElemListaAeroviaMadridBarcelona(String text) {
+    public void annadirElemListaAeroviaMadridBarcelona(String text) {
         DefaultListModel model = (DefaultListModel) jListAeroviaMadridBarcelona.getModel();
         model.addElement(text);
         
@@ -42,7 +42,7 @@ public class PanelAerovias extends javax.swing.JPanel {
         }
         
     }
-    public void añadirElemListaAeroviaBarcelonaMadrid(String text) {
+    public void annadirElemListaAeroviaBarcelonaMadrid(String text) {
         DefaultListModel model = (DefaultListModel) jListAeroviaBarcelonaMadrid.getModel();
         model.addElement(text);
     }

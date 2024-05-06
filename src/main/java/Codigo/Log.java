@@ -14,13 +14,13 @@ public class Log {
 
     public Log() {
         try {
-            // FileWriter configurado para no añadir texto al final del archivo existente (false para reescritura)
+            // FileWriter configurado para no annadir texto al final del archivo existente (false para reescritura)
             writer = new PrintWriter(new FileWriter(LOG_FILE, false));
         } catch (IOException e) {
             System.err.println("Error al abrir el archivo de log: " + e.getMessage());
         }
 
-        // Añadimos un shutdown hook para que se guarden los datos incluso parando el programa abruptamente
+        // Annadimos un shutdown hook para que se guarden los datos incluso parando el programa abruptamente
         Runtime.getRuntime().addShutdownHook(new Thread(() -> writer.close()));
     }
 
