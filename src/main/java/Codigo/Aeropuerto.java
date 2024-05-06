@@ -4,12 +4,9 @@ import Interfaces.VentanaPrincipal;
 import static java.lang.Math.random;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 public class Aeropuerto {
@@ -24,16 +21,13 @@ public class Aeropuerto {
     private PuertaEmbarque gate4;
     private PuertaEmbarque gate5;
     private PuertaEmbarque gate6;
-    private Pista pista1;
-    private Pista pista2;
-    private Pista pista3;
-    private Pista pista4;
+    private Pista[] pistas;
     private AreaEstacionamiento areaEstacionamiento;
     private AreaRodaje areaRodaje;
     private Aerovia entrada;
     private Aerovia salida;
     private SafeSemaphore puertas;
-    private SafeSemaphore pistas;
+    private SafeSemaphore semaforoPistas;
     private Log log ;
     private SafeSemaphore control;
     private VentanaPrincipal ventana;
@@ -54,16 +48,15 @@ public class Aeropuerto {
         gate4 = new PuertaEmbarque('M',4);
         gate5 = new PuertaEmbarque('E',5);
         gate6 = new PuertaEmbarque('D',6);
-        pista1 = new Pista(1);
-        pista2 = new Pista(2);
-        pista3 = new Pista(3);
-        pista4 = new Pista(4);
+        pistas = new Pista[] {
+            new Pista(1), new Pista(2), new Pista(3), new Pista(4)
+        };  
         areaEstacionamiento = new AreaEstacionamiento();
         areaRodaje = new AreaRodaje();
         this.entrada = entrada;
         this.salida = salida;
         puertas=new SafeSemaphore(6,true,gestorEstado);
-        pistas=new SafeSemaphore(4,true,gestorEstado);
+        semaforoPistas=new SafeSemaphore(4,true,gestorEstado);
         this.log= log;
         control=new SafeSemaphore(1,true,gestorEstado);
         embarque = new SafeSemaphore(5,true,gestorEstado);
@@ -235,17 +228,16 @@ public class Aeropuerto {
         
         // Bucle para intentar obtener una pista disponible
         do {
-            p = obtenerPista(false);
+            p = obtenerPista();
             if (p == null) {
                 gestorEstado.verificarEstado();
-                safeSleep(1000); // Esperar 1 segundo antes de volver a intentar obtener una pista
+                safeSleep(1000 + (int) (5000 * Math.random())); // Esperar 1 segundo antes de volver a intentar obtener una pista
             }
         } while (p == null);
         
         areaRodaje.salirAreaRodaje(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir del Área de Rodaje");
         ventana.eliminarElemListaAreaRodaje(avion.getID()+"("+avion.getPasajeros()+")",id);
-        p.accederPista(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+p.getNumPista());
         //Logica para actualizar la pista
         String text = "Despegue: "+avion.getID()+"("+avion.getPasajeros()+")";
@@ -256,7 +248,6 @@ public class Aeropuerto {
         //Despegue
         gestorEstado.verificarEstado();
         safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-        p.abandonarPista(avion);
         log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+p.getNumPista());
         //Logica para actualizar la pista
         text = "";
@@ -283,7 +274,7 @@ public class Aeropuerto {
     public void aterrizar(Avion avion) throws InterruptedException {
         gestorEstado.verificarEstado();
         while (true) {
-            Pista pistaDisponible = obtenerPista(true);
+            Pista pistaDisponible = obtenerPista();
             if (pistaDisponible != null) {
                 entrada.salirAerovia(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de salir de la Aerovía ");
@@ -297,7 +288,6 @@ public class Aeropuerto {
                 // aterrizaje
                 gestorEstado.verificarEstado();
                 safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
-                pistaDisponible.accederPista(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de aterrizar en el aeropuerto de "+this.nombre);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de entrar a la Pista "+pistaDisponible.getNumPista());
                 //Logica para actualizar la pista
@@ -307,7 +297,6 @@ public class Aeropuerto {
                 gestorEstado.verificarEstado();
                 safeSleep(1000 + (int) (4000 * Math.random())); // Tiempo aleatorio entre 1 y 5 segundos
                 
-                pistaDisponible.abandonarPista(avion);
                 log.writeLog("PRUEBA:Aeropuerto "+ this.nombre,"El avión "+ avion.getID() +" acaba de abandonar la Pista "+pistaDisponible.getNumPista());
                 //Logica para actualizar la pista
                 text = "";
@@ -411,6 +400,45 @@ public class Aeropuerto {
             safeSleep(1000); // Tiempo de un segundo
         }
     }
+    
+    
+   public Pista obtenerPista() throws InterruptedException {
+        semaforoPistas.safeAcquire(); // Adquiere un permiso, bloqueando si no hay disponibles
+        try {
+            for (Pista pista : pistas) {
+                if (!pista.getOcupado() && pista.getEstado()) {
+                    pista.setOcupado(true); // Marcar la pista como ocupada
+                    return pista;
+                }
+            }
+        } finally {
+            semaforoPistas.release(); // Si no encontró ninguna pista disponible, libera el semáforo
+        }
+        return null; // Esto no debería suceder, ya que el semáforo controla el acceso a las pistas
+    }
+
+    public void liberarPista(Pista pista) {
+        pista.setOcupado(false);
+        semaforoPistas.release(); // Libera un permiso, permitiendo que otro hilo adquiera una pista
+    }
+
+    public void cerrarPista(int numeroPista) {
+        for (Pista pista : pistas) {
+            if (pista.getNumPista() == numeroPista && pista.getEstado()) {
+                pista.setEstado(false);
+                break;
+            }
+        }
+    }
+
+    public void abrirPista(int numeroPista) {
+        for (Pista pista : pistas) {
+            if (pista.getNumPista() == numeroPista && !pista.getEstado()) {
+                pista.setEstado(true);
+                break;
+            }
+        }
+    }
     public void safeSleep(long sleepMs) throws InterruptedException {
         long startTime = System.currentTimeMillis();
         long sleptTime = 0;
@@ -475,56 +503,6 @@ public class Aeropuerto {
         }
         return null; // Si todas las puertas están ocupadas, devolvemos null
     }
-
-
-    
-    //Suelta la puerta de embarque
-    public void liberarPuertaEmbarque(boolean tipo,PuertaEmbarque p){
-        if(p == gate1 ||p == gate2 ||p == gate3 ||p == gate4){
-            mixtas.release();
-        }
-        if(tipo){
-            embarque.release();
-        }else{
-            desembarque.release();
-        }
-       puertas.release();
-
-        
-    }
-    
-    private Pista obtenerPista(boolean aterrizaje) throws InterruptedException {
-        if(pistas.availablePermits()==0 && aterrizaje){
-            return null;
-        }
-        pistas.safeAcquire();
-        if (!pista1.getOcupado() && pista1.getEstado()) {
-            pista1.setOcupado(true);
-            return pista1;
-        } else if (!pista2.getOcupado() && pista2.getEstado()) {
-            pista2.setOcupado(true);
-            return pista2;
-        } else if (!pista3.getOcupado() && pista3.getEstado()) {
-            pista3.setOcupado(true);
-            return pista3;
-        } else if (!pista4.getOcupado() && pista4.getEstado()) {
-            pista4.setOcupado(true);
-            return pista4;
-        } else {
-            return null;
-        }
-        
-    }
-    
-    //Suelta la puerta de embarque
-    public void liberarPista(Pista pista){
-        if(pista.getEstado()){
-        pistas.release();    
-        }
-    }
-    
-    
-    
     public DefaultListModel avionesAerovia1(){
         List<Avion> aviones = entrada.getAviones();
         DefaultListModel model = new DefaultListModel();
@@ -542,42 +520,22 @@ public class Aeropuerto {
         }
         return model;
     }
+
     
-    public void cerrarPista(int numeroPista) {
-        Pista pista = getPista(numeroPista);
-        if (pista != null && pista.getEstado()) { // Solo intenta cerrar si está abierta
-            pista.setEstado(false);
-                try {
-                    pistas.safeAcquire(); // Solo adquirir si la pista estaba abierta.
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Aeropuerto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            System.out.println("Pista " + numeroPista + " cerrada. Estado actual: " + pista.getEstado());
+    //Suelta la puerta de embarque
+    public void liberarPuertaEmbarque(boolean tipo,PuertaEmbarque p){
+        if(p == gate1 ||p == gate2 ||p == gate3 ||p == gate4){
+            mixtas.release();
         }
+        if(tipo){
+            embarque.release();
+        }else{
+            desembarque.release();
+        }
+       puertas.release();
+
+        
     }
-    
-    public void abrirPista(int numeroPista) {
-        Pista pista = getPista(numeroPista);
-        if (pista != null && !pista.getEstado()) { // Solo intenta abrir si está cerrada
-            pista.setEstado(true);
-            pistas.release(); // Incrementar el semáforo solo si la pista estaba cerrada.
-            System.out.println("Pista " + numeroPista + " abierta. Estado actual: " + pista.getEstado());
-        }
-    }
-    private Pista getPista(int numeroPista) {
-        switch (numeroPista) {
-            case 1:
-                return pista1;
-            case 2:
-                return pista2;
-            case 3:
-                return pista3;
-            case 4:
-                return pista4;
-            default:
-                return null;
-        }
-    } 
     public String getNombre(){
         return nombre;
     }

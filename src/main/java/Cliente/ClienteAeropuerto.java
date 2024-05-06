@@ -24,15 +24,13 @@ public class ClienteAeropuerto extends javax.swing.JFrame {
             panelAeropuertoCliente1.actualizarInterfaz();
             panelAeropuertoCliente2.actualizarInterfaz();
             panelAerovias.actualizarAerovias();
-
             try {
                 Thread.sleep(tasaRefresco); //Frecuencia de refresco de actualización
             } catch (InterruptedException e) {
                 System.out.println("Error sleep recibirInfoServer");
-                Thread.currentThread().interrupt();  // Buena práctica para manejar la interrupción
             }
         }
-    }).start();  // No olvides iniciar el hilo
+    }).start(); 
 }
     
     

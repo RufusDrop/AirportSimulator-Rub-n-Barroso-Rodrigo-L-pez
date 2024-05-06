@@ -14,7 +14,6 @@ import javax.swing.border.SoftBevelBorder;
 public class PanelAeropuertoCliente extends javax.swing.JPanel {
 
     private int id;
-    private Servidor servidor;
     /**
      * Creates new form PanelAeropuertoCliente
      */
@@ -32,7 +31,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
                 Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
                 // Obtener la referencia remota del objeto del servidor
-                servidor = (Servidor) registry.lookup("Servidor");
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
                 // Usar los métodos remotos
                 SwingUtilities.invokeLater(() -> {
@@ -358,15 +357,20 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonCerrarPista1.setBorder(loweredSoftBevel);
         jButtonCerrarPista1.setEnabled(false);
+        new Thread(() -> {
         try {
-          
+          // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
             // Usar los métodos remotos
             servidor.cerrarPista(1, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
 
     }//GEN-LAST:event_jButtonCerrarPista1ActionPerformed
 
@@ -379,15 +383,20 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonAbrirPista1.setBorder(loweredSoftBevel);
         jButtonAbrirPista1.setEnabled(false);
+        new Thread(() -> {
         try {
-         
+        // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
             // Usar los métodos remotos
             servidor.abrirPista(1, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
     }//GEN-LAST:event_jButtonAbrirPista1ActionPerformed
 
     private void jButtonAbrirPista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista2ActionPerformed
@@ -398,8 +407,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonAbrirPista2.setBorder(loweredSoftBevel);
         jButtonAbrirPista2.setEnabled(false);
+        new Thread(() -> {
         try {
-    
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(2, id);
@@ -407,6 +421,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
     }//GEN-LAST:event_jButtonAbrirPista2ActionPerformed
 
     private void jButtonCerrarPista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista2ActionPerformed
@@ -417,8 +432,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonCerrarPista2.setBorder(loweredSoftBevel);
         jButtonCerrarPista2.setEnabled(false);
+        new Thread(() -> {
         try {
-     
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(2, id);
@@ -426,6 +446,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
         
     }//GEN-LAST:event_jButtonCerrarPista2ActionPerformed
 
@@ -437,8 +458,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonCerrarPista3.setBorder(loweredSoftBevel);
         jButtonCerrarPista3.setEnabled(false);
+        new Thread(() -> {
         try {
-    
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(3, id);
@@ -446,6 +472,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
     }//GEN-LAST:event_jButtonCerrarPista3ActionPerformed
 
     private void jButtonAbrirPista3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista3ActionPerformed
@@ -456,8 +483,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonAbrirPista3.setBorder(loweredSoftBevel);
         jButtonAbrirPista3.setEnabled(false);
+        new Thread(() -> {
         try {
-        
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.abrirPista(3, id);
@@ -465,6 +497,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
     }//GEN-LAST:event_jButtonAbrirPista3ActionPerformed
 
     private void jButtonAbrirPista4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirPista4ActionPerformed
@@ -475,13 +508,20 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonAbrirPista4.setBorder(loweredSoftBevel);
         jButtonAbrirPista4.setEnabled(false);
+        new Thread(() -> {
         try {
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
             // Usar los métodos remotos
             servidor.abrirPista(4, id);
         } catch (Exception e) {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
     }//GEN-LAST:event_jButtonAbrirPista4ActionPerformed
 
     private void jButtonCerrarPista4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarPista4ActionPerformed
@@ -492,8 +532,13 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
         Border loweredSoftBevel = new SoftBevelBorder(SoftBevelBorder.LOWERED);
         jButtonCerrarPista4.setBorder(loweredSoftBevel);
         jButtonCerrarPista4.setEnabled(false);
+        new Thread(() -> {
         try {
-     
+            // Conectar al registro RMI en el servidor
+                Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+
+                // Obtener la referencia remota del objeto del servidor
+                Servidor servidor = (Servidor) registry.lookup("Servidor");
 
             // Usar los métodos remotos
             servidor.cerrarPista(4, id);
@@ -501,6 +546,7 @@ public class PanelAeropuertoCliente extends javax.swing.JPanel {
             System.err.println("Error en el cliente RMI: " + e.getMessage());
             e.printStackTrace();
         }
+        }).start(); 
         
     }//GEN-LAST:event_jButtonCerrarPista4ActionPerformed
 
